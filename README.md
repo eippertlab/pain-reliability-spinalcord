@@ -21,8 +21,8 @@ This repository contains the preprocessing and analysis code needed to assess th
 <li>Otherwise  each python script lists the version of the packages used at the top!</li>
 
 ## Github repos
-https://github.com/NYU-DiffusionMRI/mppca_denoise
-https://github.com/pog87/PtitPrince
+<li>https://github.com/NYU-DiffusionMRI/mppca_denoise</li>
+<li>https://github.com/pog87/PtitPrince</li>
 
 ## Preprocessing & Analysis software
 For preprocessing and calculation of results the following software was used:
