@@ -11,6 +11,8 @@ This repository contains the preprocessing and analysis code needed to assess th
 <li>6_posthoc: Will be added soon</li>
 <li>helper_functions: functions / templates needed for running the rest of the code</li>
 
+Bash scripts end on .sh, matlab scripts on .mat and python scripts on .py! The number of the scripts tell you the order in which they should be run.
+
 ## Required software
 <li>[MATLAB](https://de.mathworks.com/products/matlab.html) , version R2022b or higher</li>
 <li>[Spinal Cord Toolbox (SCT)](https://spinalcordtoolbox.com/index.html), version 5.5</li>
