@@ -1,6 +1,7 @@
 # pain-reliability-spinalcord
 This repository is associated with the following [manuscript](https://www.biorxiv.org/content/10.1101/2023.12.22.572825v1.article-metrics) and the corresponding dataset.
 
+## Content
 This repository contains the preprocessing and analysis code needed to assess the reliability of task-based spinal cord fMRI as presented in above-mentioned manuscript. The code is organized into the sections: 
 <li>1_preprocessing: preprocessing of fMRI and physiological data</li>
 <li>2_glm: running Feat GLM, extracting masks in template space, running the group level analysis, extracting relevant statistics</li>
@@ -15,18 +16,15 @@ This repository contains the preprocessing and analysis code needed to assess th
 <li>[Spinal Cord Toolbox (SCT)](https://spinalcordtoolbox.com/index.html), version 5.5</li>
 <li>[FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL) version 5.0 or higher</li>
 <li>[Python](https://www.python.org/) version 3.10.9</li>
-  
-** For python packages: see requirements_python.txt,
-
-** try to install required python packages via pip install -r requirements_python.txt
-
-** Otherwise  each python script lists the version of the packages used at the top!
+<li>For python packages: see requirements_python.txt</li>
+<li>try to install required python packages via pip install -r requirements_python.txt</li>
+<li>Otherwise  each python script lists the version of the packages used at the top!</li>
 
 ## Github repos
 https://github.com/NYU-DiffusionMRI/mppca_denoise
 https://github.com/pog87/PtitPrince
 
-## Preprocessing & Analysis
+## Preprocessing & Analysis software
 For preprocessing and calculation of results the following software was used:
 <li>Bash: GNU bash, version 5.1.4(1)-release (x86_64-pc-linux-gnu)</li>
 <li>Spinal cord toolbox: sct_5.5</li>
