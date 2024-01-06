@@ -25,10 +25,10 @@ https://github.com/pog87/PtitPrince
 
 ## Preprocessing & Analysis
 For preprocessing and calculation of results the following software was used:
-Bash: GNU bash, version 5.1.4(1)-release (x86_64-pc-linux-gnu)
-Spinal cord toolbox: sct_5.5
-Matlab version used: 9.13.0.2049777 (R2022b)
-FSL version 6.0.3
-PSPM toolbox: PsPM_v6.0.0
-EEGlab: eglab2019_0
-For ANTs N4BiasFieldCorrection: ANTs version 2.3.1
+<li>Bash: GNU bash, version 5.1.4(1)-release (x86_64-pc-linux-gnu)</li>
+<li>Spinal cord toolbox: sct_5.5</li>
+<li>Matlab version used: 9.13.0.2049777 (R2022b)</li>
+<li>FSL version 6.0.3</li>
+<li>PSPM toolbox: PsPM_v6.0.0</li>
+<li>EEGlab: eglab2019_0</li>
+<li>For ANTs N4BiasFieldCorrection: ANTs version 2.3.1</li>
