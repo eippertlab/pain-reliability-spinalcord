@@ -1,40 +1,83 @@
 #!/bin/bash
 # 04_ExtractStats.sh
 
-#what shall be done
-extract_roi=1
-mask_dir=/data/pt_02306/main/data/derivatives/masks
-if [ $extract_roi -eq 1 ]; then
-	for model in denoised_single_2step_v2; do
-		for subject in {1..40}; do
-		  for session in {1..2}; do
-				echo $model
-		    printf -v sub "%02d" $subject
-		    printf -v ses "%02d" $session
-		    echo "subject: " $sub "session: " $ses
-		    #Directories
-		    project_dir=/data/pt_02306/main/data
-		    data_dir=$project_dir/derivatives/glm/sub-${sub}/ses-${ses}/$model
-		    cd $data_dir
-		    for i in $(ls -d *te-40*refined.feat/); do
-					if [[ $i = *"te-40_"* ]]; then
-		  		  run_dir=$data_dir/${i}stats/normalization
-						echo $run_dir
-						out_dir=$run_dir/extracts
-						mkdir -p $out_dir
-						sct_register_multimodal -i $run_dir/cope1_normalized_spline.nii.gz \
-					  												-d $mask_dir/PAM50_cord.nii.gz \
-																		-identity 1 \
-																		-o $run_dir/cope1_normalized_spline_pam50.nii.gz
+#on subject level we need:
+#peak zstat & cope, #avg zstat & cope, all values in respective ROI zstat & cope
+#rois:only c6, dh left, ventral horn right and respective dilated version
 
-						fslroi $run_dir/cope1_normalized_spline_pam50.nii.gz $run_dir/cope1_normalized_spline_pam50.nii.gz 0 141 0 141 763 114 0 -1
-					  fslmaths $run_dir/cope1_normalized_spline_pam50.nii.gz -mas $mask_dir/dh_left_c6.nii.gz $out_dir/dh_left_c6_cope1.nii.gz
-		 			  fslstats $out_dir/dh_left_c6_cope1.nii.gz  -R > $out_dir/dh_left_c6_min_max.txt
-		 			  fslmeants -i $run_dir/cope1_normalized_spline_pam50.nii.gz -m $mask_dir/dh_left_c6.nii.gz -o $out_dir/dh_left_c6_m.txt
-						fslmeants -i $run_dir/cope1_normalized_spline_pam50.nii.gz -m $mask_dir/dh_left_c6.nii.gz -o $out_dir/dh_left_c6_all.txt --showall
-					fi
-					done
-			  done
+#on group level we need:
+#uncorrected p values for each quadrant per segment,
+#uncorrected p values within each horn per segment
+
+#what shall be done
+extract_single_level=0
+extract_group_level=0
+extract_group_level_dhlc6=1
+
+#Directories
+project_dir=/data/pt_02306/main/data/pain-reliability-spinalcord
+mask_dir=$project_dir/derivatives/masks
+
+if [ $extract_single_level -eq 1 ]; then
+	for subject in {1..4}; do
+	  for session in {1..2}; do
+			echo $model
+	    printf -v sub "%02d" $subject
+	    printf -v ses "%02d" $session
+	    echo "subject: " $sub "session: " $ses
+	    #Directories
+	    data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/ReliabilityRun.feat/stats/normalization
+	    out_dir=$data_dir/extracts
+			mkdir -p $out_dir
+			for stat in cope1 zstat1; do
+				sct_register_multimodal -i $data_dir/${stat}_reg.nii.gz \
+																-d $mask_dir/PAM50_cord.nii.gz \
+																-identity 1 \
+																-o $data_dir/${stat}_reg.nii.gz
+
+				for mask in dh_left_c6 vh_right_c6 c6_dl_dil c6_vr_dil; do
+				  fslmaths $data_dir/${stat}_reg.nii.gz -mas $mask_dir/${mask}.nii.gz $out_dir/${stat}_${mask}.nii.gz
+				  fslstats $out_dir/${stat}_${mask}.nii.gz  -R > $out_dir/${stat}_${mask}_min_max.txt
+				  fslmeants -i $data_dir/${stat}_reg.nii.gz -m $mask_dir/${mask}.nii.gz -o $out_dir/${stat}_${mask}_m.txt
+					fslmeants -i $data_dir/${stat}_reg.nii.gz -m $mask_dir/${mask}.nii.gz -o $out_dir/${stat}_${mask}_all.txt --showall
+				done
 			done
 		done
-	fi
+  done
+fi
+
+if [ $extract_group_level = 1 ]; then
+	rois=(dh_left dh_right vh_left vh_right)
+	levs=(c5 c6 c7 c8)
+  groupdir=$project_dir/derivatives/results/glm/ReliabilityRun/cord
+	#sct_register_multimodal -i $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz \
+	#												-d $mask_dir/PAM50_cord.nii.gz \
+	#												-identity 1 \
+	#												-o $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz
+	#extract GM horns
+  for i in {0..3}; do
+    for n in {0..3}; do
+       fslmeants -i $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz -m $mask_dir/${rois[$i]}_${levs[$n]}.nii.gz  -o $groupdir/${levs[$n]}_${rois[$i]}_vox_p_all.txt --showall
+    done
+  done
+
+	#extract cord quadrants
+	rois=(dr vr dl vl)
+	for i in {0..3}; do
+    for n in {0..3}; do
+       fslmeants -i $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz -m $mask_dir/${levs[$n]}_${rois[$i]}.nii.gz  -o $groupdir/${levs[$n]}_${rois[$i]}_vox_p_all.txt --showall
+    done
+  done
+fi
+if [ $extract_group_level_dhlc6 = 1 ]; then
+	for session in {1..2}; do
+    printf -v ses "%02d" $session
+	  groupdir=$project_dir/derivatives/results/glm/ReliabilityRun/dh_left_c6
+		sct_register_multimodal -i $groupdir/dh_left_c6_ses-${ses}_OneSampT_masked_vox_p_tstat1.nii.gz \
+														-d $mask_dir/PAM50_cord.nii.gz \
+														-identity 1 \
+														-o $groupdir/dh_left_c6_ses-${ses}_OneSampT_masked_vox_p_tstat1.nii.gz
+		#extract DHL c6
+    fslmeants -i $groupdir/dh_left_c6_ses-${ses}_OneSampT_masked_vox_p_tstat1.nii.gz -m $mask_dir/dh_left_c6.nii.gz  -o $groupdir/dh_left_c6_ses-${ses}_vox_p_all.txt --showall
+	done
+fi

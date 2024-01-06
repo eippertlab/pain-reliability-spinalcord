@@ -1,9 +1,12 @@
 #!/bin/bash
 # SpinalLearning_2020_MotionOutliers is the helper function you will need here.
 
+#1. find motion outliers in mocoed blocks
+echo "detecting motion outliers for refined moco, reliability run"
+
 # Loop across sessions for data preparation
-for subject in 1; do #{1..40}; do
-  for session in 1; do #{1..2}; do
+for subject in {5..8}; do
+  for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
     echo "subject: " $sub "session: " $ses
@@ -17,8 +20,6 @@ for subject in 1; do #{1..40}; do
     helper_functions=$github_folder/helper_functions
 
     cd $data_dir
-    #1. find motion outliers in mocoed blocks
-    echo "detecting motion outliers for refined moco, reliability run"
     for file in $(find $data_dir/ -maxdepth 1  -name "*te40ReliabilityRun*bold_denoised_moco_refined.nii.gz"); do
       fname=$(basename "$file" | cut -d. -f1)
       for mask in $(find $data_dir/ -maxdepth 1  -name "mask*te40ReliabilityRun*bold_denoised_moco_m.nii.gz"); do

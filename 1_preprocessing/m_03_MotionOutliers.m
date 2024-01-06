@@ -7,8 +7,8 @@ fsldirmpath = sprintf('%s/etc/matlab',fsldir);
 path(path, fsldirmpath);
 setenv('FSLOUTPUTTYPE', 'NIFTI_GZ'); % this to tell what the output type would be
 %% Identification %% 
-for subject=1 %:40
-    for session=1 %:2
+for subject=5:8  %:40
+    for session=1:2
         clearvars -except subject session
         sub=['sub-',num2str(subject,'%02.f')]
         ses=['ses-',num2str(session,'%02.f')]

@@ -2,12 +2,12 @@
 # 06_b_pnm_thermnoise.sh
 
 # What shall be done
-prepInput=0
+prepInput=1
 runpnm=1
 
 # Loop across sessions for data preparation
-for subject in 1; do #{1..40}; do
-  for session in 1; do #{1..2}; do
+for subject in {5..8}; do
+  for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
     echo "subject: " $sub "session: " $ses

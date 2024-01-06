@@ -5,12 +5,12 @@
 #We used ANTs version 2.3.1
 
 # What shall be done?
-cropAuto=0
-biascorrect=0
+cropAuto=1
+biascorrect=1
 denoise=1
-segment=0
-label=0
-qc_check=0
+segment=1
+label=1
+qc_check=1
 
 #settings
 cropA_minX=0
@@ -20,8 +20,8 @@ cropA_sizeY=-1
 cropA_minZ=0
 
 #loop over subjects
-for subject in 1; do #{1..40}; do
-  for session in 1; do #{1..2}; do
+for subject in {5..8}; do
+  for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
     echo "subject: " $sub "session: " $ses
@@ -102,61 +102,75 @@ for subject in 1; do #{1..40}; do
           -i ${fname}_crop.nii.gz \
           -o ${fname}_crop_biascorr.nii.gz \
           -c [200x200x200x200,0.000001]
+          sleep 10
+          echo "finished bias correction"
       done
     fi
 
     #3. denoising (via matlab)
     if [ $denoise -eq 1 ]; then
-      echo "denoising sub" $sub "session" $ses
-      github_folder=/data/pt_02306/main/code/github/pain-reliability-spinalcord
-      helper_functions=$github_folder/helper_functions
-      package_dir=/data/u_dabbagh_software/MRIDenoisingPackage_r01_pcode/ #change this to your own path to the package!
-      cd $out_dir
-      echo $out_dir
-      for file in $(find $out_dir/ -maxdepth 1 -name "*T2w.nii.gz"); do
-        fname=$(basename "$file" | cut -d. -f1)
-        gunzip ${fname}_crop_biascorr.nii.gz
-        sleep 3                                          # unzip file beause toolbox can't deal with .gz files
-        filename=${fname}_crop_biascorr.nii
-        out_name=${fname}_crop_biascorr_denoise.nii
-        #echo $filename                 # set up filename as character argument
-        #echo $package_dir
-        #echo $denoise_script_dir
-        matlab -nosplash -nodesktop -r "addpath(genpath('${denoise_script_dir}')); \
-                                        try; Denoising_T1('${package_dir}', 1, 2, 1, 1, 3, '_denoise', 0,'${filename}','${out_dir}'); catch; end; quit;"; # run matlab function from command line
-        gzip -f $filename                                # zip input file
-        gzip -f $out_name
-        sleep 5                    # zip resulting file                                                               # wait 10s before executing next call to Matlab; prevents Matlab from randomly crashing on startup
-      done
-    fi
+  echo "denoising sub" $sub "session" $ses
+  github_folder=/data/pt_02306/main/code/github/pain-reliability-spinalcord
+  helper_functions=$github_folder/helper_functions
+  package_dir=/data/u_dabbagh_software/MRIDenoisingPackage_r01_pcode/ #change this to your own path to the package!
+  cd $out_dir
+  echo $out_dir
+  for file in $(find $out_dir/ -maxdepth 1 -name "*T2w.nii.gz"); do
+    fname=$(basename "$file" | cut -d. -f1)
+    gunzip $out_dir/${fname}_crop_biascorr.nii.gz
+    sleep 3  # unzip file because toolbox can't deal with .gz files
+    filename=${fname}_crop_biascorr.nii
+    out_name=${fname}_crop_biascorr_denoise.nii
+    # Run MATLAB function with verbose output
+    matlab -nosplash -nodesktop -r "addpath(genpath('${helper_functions}')); try; Denoising_T1('${package_dir}', 1, 2, 1, 1, 3, '_denoise', 0, '${filename}', '${out_dir}'); catch ME; disp(getReport(ME)); end; quit;"
+
+    # Wait for output file to be created
+    while [ ! -f "${out_dir}/${out_name}" ]; do
+      sleep 1
+    done
+
+    gzip -f $out_dir/${filename}  # zip input file
+    gzip -f $out_dir/$out_name    # zip resulting file
+    sleep 5  # wait before executing next call to Matlab; prevents Matlab from randomly crashing on startup
+  done
+fi
+
 
     #4. segmentation
     if [ $segment -eq 1 ]; then
       echo "segmenting sub" $sub "session" $ses
       cd $out_dir
-      rm -r $qc_dir/raw/*
-      rm -r $qc_dir/smooth/*
-      for file in $(find . -name "*T2w.nii.gz"); do
+      if [ -d "$qc_dir/raw" ] && [ "$(ls -A "$qc_dir/raw")" ]; then
+          echo "Removing all contents of $qc_dir/raw"
+          rm -rf "$qc_dir/raw"/*
+      fi
+
+      if [ -d "$qc_dir/smooth" ] && [ "$(ls -A "$qc_dir/smooth")" ]; then
+          echo "Removing all contents of $qc_dir/smooth"
+          rm -rf "$qc_dir/smooth"/*
+      fi
+
+      for file in $(find $out_dir/ -maxdepth 1 -name "*T2w.nii.gz"); do
         fname=$(basename "$file" | cut -d. -f1)
           #1) initial segmentation
-          sct_deepseg_sc -i ${fname}_crop_biascorr_denoise.nii.gz \
+          sct_deepseg_sc -i $out_dir/${fname}_crop_biascorr_denoise.nii.gz \
                          -c t2 \
-                         -o ${fname}_seg_raw.nii.gz \
+                         -o $out_dir/${fname}_seg_raw.nii.gz \
                          -qc $qc_dir -qc-dataset raw
 
           #2) smooth along spinal cord
-          sct_smooth_spinalcord -i ${fname}_crop_biascorr_denoise.nii.gz \
-                                -s ${fname}_seg_raw.nii.gz \
+          sct_smooth_spinalcord -i $out_dir/${fname}_crop_biascorr_denoise.nii.gz \
+                                -s $out_dir/${fname}_seg_raw.nii.gz \
                                 -smooth 0,0,6 \
                                 -v 1 \
-                                -o ${fname}_crop_biascorr_denoise_smooth.nii.gz
+                                -o $out_dir/${fname}_crop_biascorr_denoise_smooth.nii.gz
 
           rm -Rf warp_* \
                  straightening.cache
           #3. segment smoothed T2
-          sct_deepseg_sc -i ${fname}_crop_biascorr_denoise_smooth.nii.gz \
+          sct_deepseg_sc -i $out_dir/${fname}_crop_biascorr_denoise_smooth.nii.gz \
                          -c t2 \
-                         -o ${fname}_seg.nii.gz \
+                         -o $out_dir/${fname}_seg.nii.gz \
                          -qc $qc_dir -qc-dataset seg
       done
     fi
@@ -164,8 +178,11 @@ for subject in 1; do #{1..40}; do
     if [ $label -eq 1 ]; then
       echo "labeling discs for sub" $sub "session" $ses
       cd $out_dir
-      rm -r $qc_dir/label/*
-      for file in $(find . -name "*T2w.nii.gz"); do
+      if [ -d "$qc_dir/label" ] && [ "$(ls -A "$qc_dir/label")" ]; then
+        echo "Removing all contents of $qc_dir/label"
+        rm -rf "$qc_dir/label"/*
+      fi
+      for file in $(find $out_dir/ -maxdepth 1 -name "*T2w.nii.gz"); do
         fname=$(basename "$file" | cut -d. -f1)
           #automatic labeling of discs and vertebrae
         if [[ $subject = 8 && $session = 2 ]] || [[ $subject = 9 && $session = 1 ]] || [[ $subject = 23 ]] || [[ $subject = 37 && $session = 1 ]] || [[ $subject = 38 ]]; then

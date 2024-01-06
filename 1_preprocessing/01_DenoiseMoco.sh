@@ -2,15 +2,15 @@
 # 01_moco.sh
 
 # What shall be done
-prepData=0
+prepData=1
 thermnoise=1
 moco=1
 moco_refined=1
 csf_mask=1
 
 # Loop across sessions for data preparation
-for subject in 1; do #{1..40}; do
-  for session in 1; do #{1..2}; do
+for subject in {5..8}; do
+  for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
     echo "subject: " $sub "session: " $ses

@@ -3,11 +3,11 @@
 
 # What shall be done?
 normalize_t2=1
-normalize_epi=0
+normalize_epi=1
 
 # Loop across sessions for data preparation
-for subject in 1; do #{1..40}; do
-  for session in 1; do #{1..2}; do
+for subject in {1..40}; do
+  for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
     echo "subject: " $sub "session: " $ses
@@ -17,8 +17,9 @@ for subject in 1; do #{1..40}; do
     data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/anat/preprocessing
     qc_dir=$data_dir/qc
     out_dir=$data_dir/normalization
+    mkdir -p $out_dir
     data_dir_epi=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/preprocessing
-    out_dir_epi=$epi_dir/normalization/ReliabilityRun
+    out_dir_epi=$data_dir_epi/normalization/ReliabilityRun
     mkdir -p $out_dir_epi
     template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template #insert here your path to the SCT PAM50 template
 
@@ -35,11 +36,10 @@ for subject in 1; do #{1..40}; do
                                  -c t2 \
                                  -ofolder $out_dir \
                                  -qc $qc_dir/normalization_t2
-
       done
      fi
 
-     #Normalize  ReliabilityRun moco refined epi and create warp fields
+     #2. Normalize  ReliabilityRun moco refined epi and create warp fields
      if [ $normalize_epi = 1 ]; then
        echo "normalizing epi ReliabilityRun, subject:  $sub session:  $ses"
        for file in $(find $data_dir_epi/ -maxdepth 1 -name "*te40ReliabilityRun*bold_denoised_moco_refined.nii.gz"); do
