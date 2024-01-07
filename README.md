@@ -14,13 +14,13 @@ This repository contains the preprocessing and analysis code needed to assess th
 Bash scripts end on .sh, matlab scripts on .mat and python scripts on .py! The number of the scripts tell you the order in which they should be run.
 
 ## Required software
-<li>[MATLAB](https://de.mathworks.com/products/matlab.html) , version R2022b or higher</li>
-<li>[Spinal Cord Toolbox (SCT)](https://spinalcordtoolbox.com/index.html), version 5.5</li>
-<li>[FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL) version 5.0 or higher</li>
-<li>[Python](https://www.python.org/) version 3.10.9</li>
-<li>For python packages: see requirements_python.txt</li>
-<li>try to install required python packages via pip install -r requirements_python.txt</li>
-<li>Otherwise  each python script lists the version of the packages used at the top!</li>
+<li> [MATLAB](https://de.mathworks.com/products/matlab.html) , version R2022b or higher</li>
+<li> [Spinal Cord Toolbox (SCT)](https://spinalcordtoolbox.com/index.html), version 5.5</li>
+<li> [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL) version 5.0 or higher</li>
+<li> [Python](https://www.python.org/) version 3.10.9</li>
+<li> For python packages: see requirements_python.txt</li>
+<li> try to install required python packages via pip install -r requirements_python.txt</li>
+<li> Otherwise  each python script lists the version of the packages used at the top!</li>
 
 ## Github repos
 <li>https://github.com/NYU-DiffusionMRI/mppca_denoise</li>
