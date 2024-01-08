@@ -32,7 +32,7 @@ hpr = []
 #Loop over sessions
 for session in range (1,3):
     ses = 'ses-' + str(session).zfill(2)
-    for subject in range(1, 8): # 41): 
+    for subject in range(1, 41): 
         sub = 'sub-' + str(subject).zfill(2)
         print('subject: ',sub)
         print('session: ',ses)
