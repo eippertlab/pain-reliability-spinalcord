@@ -1,5 +1,5 @@
 #!/bin/bash
-# 02_2ndLevel.sh
+# 03_GroupLevel.sh
 
 #what shall be done
 prep_sessionwise=0
