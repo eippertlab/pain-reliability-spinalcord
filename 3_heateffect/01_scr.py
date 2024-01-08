@@ -8,6 +8,7 @@ numpy version: 1.23.3
 matplotlib version: 3.6.3
 pingouin version: 0.5.3
 """
+##% Import modules
 import pandas as pd
 import seaborn as sns
 import numpy as np
@@ -17,10 +18,12 @@ import matplotlib.patches as patches
 import glob
 from pathlib import Path
 import pingouin as pg
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/physio/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
+
 #%% Import data
 data = [] 
 x = np.linspace(-1, 10, num=1100)  
@@ -28,7 +31,7 @@ x = np.linspace(-1, 10, num=1100)
 excluded_subjects = {16, 39}
 
 # Loop over subjects
-for subject in range(1, 8):
+for subject in range(1, 41):
     if subject in excluded_subjects:
         continue
     sub = f'sub-{str(subject).zfill(2)}'
@@ -85,7 +88,6 @@ data_ttest = data_sample_max_avg.pivot_table(values="val_scaled", columns="ses",
 ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
 #%% Figure 2. Subjective and peripheral physiological responses, SCR
 x = pd.Series(np.linspace(-1, 10, num=1100))
-
 
 color_avg = "darkgreen"
 color_ses1 = "#d95f02"
