@@ -6,17 +6,19 @@ pandas version: 1.5.0
 seaborn version: 0.11.0
 matplotlib version: 3.6.3
 """
-#%% Modules
+#%% Import modules
 import pandas as pd
 import seaborn as sns
 import matplotlib.pylab as plt
 import warnings
 import matplotlib as mpl
 warnings.filterwarnings("ignore") 
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/reliability/'
 physio_dir = f'{project_dir}derivatives/results/physio/'
+
 #%% Import data
 scr = pd.read_csv(f'{physio_dir}peak_scr_ReliabilityRun.csv')
 scr = scr.rename(columns={"val_scaled":"maxval"}).drop("Unnamed: 0", axis=1)
@@ -63,6 +65,7 @@ with sns.plotting_context('paper', font_scale=2.2):
     ax.spines[['right', 'top']].set_visible(False)
     plt.savefig(f'{out_dir}dhl_dotplot.png', bbox_inches='tight', format="png", dpi=300)
     plt.show()
+    
 #%% Supplementary Figure 1. Individual values underlying ICC calculation: Dorsal left dilated quadrant C6 across days
 dl_dil_w = pd.pivot_table(dl_dil, values="top10", index="sub", columns="ses")
 mpl.rcParams['pdf.fonttype'] = 42
@@ -86,6 +89,7 @@ with sns.plotting_context('paper', font_scale=2.2):
     ax.spines[['right', 'top']].set_visible(False)
     plt.savefig(f'{out_dir}dl_dil_dotplot.png', bbox_inches='tight', format="png", dpi=300)
     plt.show()
+    
 #%% Supplementary Figure 1. Individual values underlying ICC calculation: Peak SCR across days
 scr_w = pd.pivot_table(scr, values="maxval", index="sub", columns="ses")
 mpl.rcParams['pdf.fonttype'] = 42
@@ -108,6 +112,7 @@ with sns.plotting_context('paper', font_scale=2.2):
     ax.spines[['right', 'top']].set_visible(False)
     plt.savefig(f'{out_dir}scr_dotplot.png', bbox_inches='tight', format="png", dpi=300)
     plt.show()
+    
 #%% Supplementary Figure 1. Individual values underlying ICC calculation: Peak PDR across days
 pup_w = pd.pivot_table(pdr, values="value", index="sub", columns="ses")
 mpl.rcParams['pdf.fonttype'] = 42
@@ -130,6 +135,7 @@ with sns.plotting_context('paper', font_scale=2.2):
     ax.spines[['right', 'top']].set_visible(False)
     plt.savefig(f'{out_dir}pdr_dotplot.png', bbox_inches='tight', format="png", dpi=300)
     plt.show()
+    
 #%% Supplementary Figure 1. Individual values underlying ICC calculation: HPR across days
 hpr_w = pd.pivot_table(hpr, values="maxval", index="sub", columns="ses")
 mpl.rcParams['pdf.fonttype'] = 42
