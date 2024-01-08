@@ -7,16 +7,18 @@ seaborn version: 0.11.0
 matplotlib version: 3.6.3
 numpy version: 1.23.3
 """
-#%% Modules
+#%% Import modules
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+
 #%% Directories
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
 out_dir = data_dir
 mask_dir = f'{project_dir}derivatives/masks/'
+
 #%% Import and prepare data
 data = pd.read_pickle(f'{data_dir}cord_p_uncorr.pickle')
 rois_quadrants = ['dr', 'vr', 'dl', 'vl']
@@ -25,6 +27,7 @@ data = data[data["roi"].isin(rois_quadrants)]
 data["pval"] = 1 - data["val"]
 data_thresh = data[data["pval"]<0.001]
 data_thresh = data[data["pval"]<0.1]
+
 #%%
 percentages_quarterly = []
 for level in levels:
