@@ -1,5 +1,5 @@
 #!/bin/sh
-# 06_b_pnm_thermnoise.sh
+# 04_PNM.sh
 
 # What shall be done
 prepInput=1
