@@ -1,5 +1,5 @@
 #!/bin/bash
-# 01_moco.sh
+# 01_DenoiseMoco.sh
 
 # What shall be done
 prepData=1
