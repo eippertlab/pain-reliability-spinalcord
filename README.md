@@ -35,3 +35,6 @@ For preprocessing and calculation of results the following software was used:
 * PSPM toolbox: PsPM_v6.0.0
 * EEGlab: eglab2019_0
 * For ANTs N4BiasFieldCorrection: ANTs version 2.3.1
+
+Should you have any questions about this code, please contact dabbagh@cbs.mpg.de.
+
