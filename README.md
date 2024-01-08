@@ -1,5 +1,5 @@
 # pain-reliability-spinalcord
-This repository is associated with the following [manuscript](https://www.biorxiv.org/content/10.1101/2023.12.22.572825v1) and the corresponding dataset.
+This repository is associated with the following [manuscript](https://www.biorxiv.org/content/10.1101/2023.12.22.572825v1) and the corresponding dataset. If you have any questions regarding this code, please feel free to reach out to dabbagh@cbs.mpg.de
 
 ## Content
 This repository contains the preprocessing and analysis code needed to assess the reliability of task-based spinal cord fMRI as presented in above-mentioned manuscript. The code is organized into the sections: 
@@ -35,6 +35,3 @@ For preprocessing and calculation of results the following software was used:
 * PSPM toolbox: PsPM_v6.0.0
 * EEGlab: eglab2019_0
 * For ANTs N4BiasFieldCorrection: ANTs version 2.3.1
-
-Should you have any questions about this code, please contact dabbagh@cbs.mpg.de.
-
