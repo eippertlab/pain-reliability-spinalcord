@@ -1,9 +1,6 @@
 #!/bin/bash
 # 02_2ndLevel.sh
 
-# Before running this script, you need to have set up a higher-level design, e.g.
-# using Glm_gui (command: Glm).
-
 #what shall be done
 prep=1
 run=1
