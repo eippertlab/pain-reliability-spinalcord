@@ -4,7 +4,7 @@
 Python version: 3.10.9
 pandas version: 1.5.0
 """
-#%% Modules
+#%% Import modules
 import pandas as pd
 import warnings
 from pathlib import Path
