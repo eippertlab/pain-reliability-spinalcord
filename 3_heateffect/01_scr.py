@@ -86,6 +86,7 @@ data_sample_max_avg.to_csv(f'{out_dir}peak_scr_ReliabilityRun.csv')
 #Difference
 data_ttest = data_sample_max_avg.pivot_table(values="val_scaled", columns="ses", index="sub")
 ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
+
 #%% Figure 2. Subjective and peripheral physiological responses, SCR
 x = pd.Series(np.linspace(-1, 10, num=1100))
 
