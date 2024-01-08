@@ -6,16 +6,20 @@ pandas version: 1.5.0
 ptitprince version: 0.2.6
 seaborn version: 0.11.0
 matplotlib version: 3.6.3
+numpy version: 1.23.3
 """
 #%% Import Modules
 import pandas as pd
 import ptitprince as pt
 import seaborn as sns
 import matplotlib.pyplot as plt
+import numpy as np
 import glob
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/physio/'
+
 #%% Import data
 data = [] 
 excluded_subjects = {3, 31}
@@ -47,28 +51,29 @@ for subject in range(1, 41):
 data = pd.concat(data, ignore_index=True)
 # store as variables to avoid loading every time
 pd.to_pickle(data, f'{out_dir}rating_ReliabilityRun.pickle')
-#%% import data
+
+#%% Load variables
 ratings = pd.read_pickle(f'{out_dir}rating_ReliabilityRun.pickle')
 ids = ratings["sub"].unique()
 for sub in ids:
     avg = (ratings[(ratings["sub"]==sub)&(ratings["ses"]=="ses-01")]["value"].values[0] + 
                   ratings[(ratings["sub"]==sub)&(ratings["ses"]=="ses-02")]["value"].values[0])/2
     ratings = ratings.append({"sub":sub, "ses":"Average","value":avg}, ignore_index=True)
-#%%
+
 ratings["Session_num_shift"] = ratings["ses"].replace('ses-02',2.15)
 ratings["Session_num_shift"] = ratings["Session_num_shift"].replace('ses-01', 1.15)
 ratings["Session_num_shift"] = ratings["Session_num_shift"].replace('Average', 0.15)
-#%%
+
 ratings["Session_num"] = ratings["ses"].replace('ses-02', str(2))
 ratings["Session_num"] = ratings["Session_num"].replace('ses-01', str(1))
 ratings["Session_num"] = ratings["Session_num"].replace('Average', str(0))
 ratings["Session_num"] = ratings['Session_num'].astype(float)
-#%%
-import numpy as np
+
 np.random.seed(10)
 jitter = 0.1
 ratings = ratings.assign(x_new = lambda df: df.Session_num_shift + (np.random.random(df.Session_num_shift.size))*jitter-0.02,
                          y_new = lambda df: df.value + (np.random.random(df.value.size))-0.5)
+
 #%% Figure 2. Subjective and peripheral physiological responses; Rating
 my_pal2 = {0:"darkgreen", 1: "#d95f02", 2: "#7570b3"}
 my_pal = {"Average":"darkgreen", "ses-01": "#d95f02", "ses-02": "#7570b3"}
