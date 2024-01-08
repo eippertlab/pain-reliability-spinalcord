@@ -59,9 +59,10 @@ for subject in {1..40}; do
       for file in $(find $out_dir/ -maxdepth 1 -name "*te40ReliabilityRun*bold_denoised.nii.gz"); do
         echo "running moco"
         fname=$(basename "$file" | cut -d. -f1)
+        # Create overall mean
         fslmaths $file -Tmean ${fname}_m.nii.gz
 
-        # B) Create mask to be used for moco, based on this new overall mean
+        # Create mask to be used for moco, based on this new overall mean
         echo "segmentation"
         sct_deepseg_sc -i ${fname}_m.nii.gz -c t2s
 
