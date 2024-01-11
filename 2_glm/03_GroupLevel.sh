@@ -2,12 +2,12 @@
 # 03_GroupLevel.sh
 
 #what shall be done
-prep_sessionwise=0
-run_dhl_sessionwise=0
-run_cord_sessionwise=0
-run_cord_dil_sessionwise=0
+prep_sessionwise=1
+run_dhl_sessionwise=1
+run_cord_sessionwise=1
+run_cord_dil_sessionwise=1
 
-prep_avg=0
+prep_avg=1
 run_dhl_avg=1
 run_cord_avg=1
 run_cord_dil_avg=1
@@ -128,7 +128,7 @@ if [ $run_dhl_avg = 1 ]; then
 	groupdir=$project_dir/derivatives/results/glm/ReliabilityRun
 	mkdir -p $groupdir/dh_left_c6
 	echo "running the avg 2nd level analysis for dh left c6"
-	randomise -i $groupdir/copes/cope_merged.nii.gz -m $groupdir/dh_left_c6/dh_left_c6.nii.gz -o $design_dir/$groupdir/dh_left_c6/dh_left_c6_avg_OneSampT_masked -1 --uncorrp -T -x -c 2.3 -C 2.3
+	randomise -i $groupdir/copes/cope_merged.nii.gz -m $groupdir/dh_left_c6/dh_left_c6.nii.gz -o $groupdir/dh_left_c6/dh_left_c6_avg_OneSampT_masked -1 --uncorrp -T -x -c 2.3 -C 2.3
  fi
 
  if [ $run_cord_avg = 1 ]; then
