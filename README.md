@@ -7,7 +7,7 @@ This repository contains the preprocessing and analysis code needed to assess th
 * 2_glm: running Feat GLM, extracting masks in template space, running the group level analysis, extracting relevant statistics
 * 3_heateffect: Assessing and plotting the effect of the heat stimulus for fMRI data and physiological measures and ratings
 * 4_spatialspecificity: Plotting spatial specificity across all levels of the spinal cord in the GM horns, assessing the percentage of active voxels in each quadrant per level, and calculating dice coefficients for the left DH C6 on both group and individual level
-* 5_reliability: Importing stats and calculating & plotting ICCs for each domain of interest
+* 5_reliability: Calculating & plotting ICCs for each domain of interest
 * 6_posthoc: Will be added soon
 * helper_functions: Functions / templates needed for running the rest of the code
 
