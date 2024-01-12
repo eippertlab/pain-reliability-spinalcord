@@ -114,7 +114,7 @@ with sns.plotting_context('paper', font_scale=2.2):
     plt.show()
     
 #%% Supplementary Figure 1. Individual values underlying ICC calculation: Peak PDR across days
-pup_w = pd.pivot_table(pdr, values="value", index="sub", columns="ses")
+pup_w = pd.pivot_table(pdr, values="maxval", index="sub", columns="ses")
 mpl.rcParams['pdf.fonttype'] = 42
 sns.set(style="white",font_scale=1.8) 
 sns.set_style('ticks') 
