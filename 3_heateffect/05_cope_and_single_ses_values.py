@@ -16,8 +16,8 @@ warnings.filterwarnings("ignore")
 
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/reliability/'
-physio_dir = f'{project_dir}derivatives/results/physio/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
+physio_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 
 #%% Import data
 scr = pd.read_csv(f'{physio_dir}peak_scr_ReliabilityRun.csv')
