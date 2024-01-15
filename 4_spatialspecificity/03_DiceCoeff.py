@@ -11,7 +11,7 @@ import numpy as np
 
 #%% Directories
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
-data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
+data_dir = f'{project_dir}derivatives/results/ReliabilityRun/spatial_specificity/'
 
 #%% Functions
 def dice_coeff(df, thresh=None):
@@ -61,7 +61,7 @@ dc_1 = dice_coeff(data, 0.1)
 print(dc_1)       
 
 #%% Subject level overlap
-data_dir = f'{project_dir}derivatives/results/reliability/'
+data_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
 data = pd.read_pickle(f'{data_dir}all_stats_ReliabilityRun.pickle')
 data = data[data["stat"]=='zstat1']
 data_thresh = data[(data["val"] < -1.96 ) | (data["val"]> 1.96)]
