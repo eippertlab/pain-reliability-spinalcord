@@ -6,10 +6,10 @@ prepData=1
 thermnoise=1
 moco=1
 moco_refined=1
-csf_mask=0
+csf_mask=1
 
 # Loop across sessions for data preparation
-for subject in {1..41}; do
+for subject in {1..40}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
