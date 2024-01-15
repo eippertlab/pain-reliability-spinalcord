@@ -1,5 +1,5 @@
 # pain-reliability-spinalcord
-This repository is associated with the following [manuscript](https://www.biorxiv.org/content/10.1101/2023.12.22.572825v1) and the corresponding [dataset](https://openneuro.org/datasets/ds004926). If you have any questions regarding this code, please feel free to reach out to dabbagh@cbs.mpg.de
+This repository is associated with the following [manuscript](https://www.biorxiv.org/content/10.1101/2023.12.22.572825v1) and the corresponding [dataset](https://openneuro.org/datasets/ds004926). If you have any questions regarding this code, please feel free to reach out to dabbagh@cbs.mpg.de.
 
 ## Content
 This repository contains the preprocessing and analysis code needed to assess the reliability of task-based spinal cord fMRI as presented in above-mentioned manuscript. The code is organized into the sections: 
@@ -8,7 +8,8 @@ This repository contains the preprocessing and analysis code needed to assess th
 * 3_heateffect: Assessing and plotting the effect of the heat stimulus for fMRI data and physiological measures and ratings
 * 4_spatialspecificity: Plotting spatial specificity across all levels of the spinal cord in the GM horns, assessing the percentage of active voxels in each quadrant per level, and calculating dice coefficients for the left DH C6 on both group and individual level
 * 5_reliability: Calculating & plotting ICCs for each domain of interest
-* 6_posthoc: Will be added soon
+* 6_posthoc: Preprocessing and analysis code needed to assess changes in reliability from three further sets of analyses, which we had not specified in the preregistration: Increasing the number of runs, accounting for spontaneous activations and within-run reliability. The main pipelineneeds to be run first! The order in which the sub-analyses need to be run is indicated by numbers.
+
 * helper_functions: Functions / templates needed for running the rest of the code
 
 Bash scripts end on .sh, matlab scripts on .m and python scripts on .py! The number of the scripts tell you the order in which they should be run.
