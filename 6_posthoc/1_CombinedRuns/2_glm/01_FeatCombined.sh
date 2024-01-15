@@ -1,5 +1,5 @@
 #!/bin/bash
-# 01_Feat.sh
+# 01_FeatCombined.sh
 
 #what shall be done
 create_fsf=1
