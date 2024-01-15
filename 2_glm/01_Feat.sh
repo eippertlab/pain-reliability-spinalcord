@@ -65,7 +65,7 @@ for subject in {5..8}; do
       if [ $normalize_feat = 1 ]; then
         echo "normalizing feat stats"
         glm_dir=${out_dir}.feat/stats
-        warp_dir=${data_dir}/normalization/ReliabilityRun
+        warp_dir=${data_dir}/normalization
         out_dir_normalization=${glm_dir}/normalization
         mkdir -p $out_dir_normalization
 
