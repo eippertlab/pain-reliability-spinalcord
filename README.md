@@ -26,6 +26,9 @@ Bash scripts end on .sh, matlab scripts on .m and python scripts on .py! The num
 * https://github.com/NYU-DiffusionMRI/mppca_denoise
 * https://github.com/pog87/PtitPrince
 
+## Matlab repos
+* https://sites.google.com/site/pierrickcoupe/softwares/denoising/mri-denoising/mri-denoising-software
+
 ## Preprocessing & Analysis software
 For preprocessing and calculation of results the following software was used:
 * Bash: GNU bash, version 5.1.4(1)-release (x86_64-pc-linux-gnu)
