@@ -47,7 +47,7 @@ for subject in {1..40}; do
         #run function function thermalNoiseRemoval(filein, name, ofolder)
         matlab_script_dir=$github_folder/helper_functions/ #your github code folder here with
         matlab -nosplash -nodesktop -r "addpath(genpath('${matlab_script_dir}')); \
-                                        try; thermalNoiseRemoval('$datain', '$fname', '$folderout'); catch ME; disp(ME); end; quit;"; # run matlab function from command line
+                                        try; thermalNoiseRemoval('$matlab_script_dir', '$datain', '$fname', '$folderout'); catch ME; disp(ME); end; quit;"; # run matlab function from command line
       done
     fi
 
