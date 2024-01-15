@@ -2,8 +2,8 @@
 # 05_T2w.sh
 
 #This script requires the usage of ANTs N4BiasFieldCorrection function. We used ANTs version 2.3.1
-# Additionally, you will need the helper function Denoising_T1.m, and Pierrick Coupés Denoising package "MRIdenoisingPackage_r01 "
-# get the denoising package under https://sites.google.com/site/pierrickcoupe/softwares/denoising/mri-denoising/mri-denoising-software
+# Additionally, you will need the helper function Denoising_T1.m, and Pierrick Coupés Denoising package MRIdenoisingPackage_r01.
+# Get the denoising package under https://sites.google.com/site/pierrickcoupe/softwares/denoising/mri-denoising/mri-denoising-software
 
 
 # What shall be done?
