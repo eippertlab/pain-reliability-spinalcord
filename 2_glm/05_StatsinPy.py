@@ -17,7 +17,7 @@ def retain_quantile(data, percentile=0.9):
     
 #%% For reliability 
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/reliability/ReliabilityRun/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6', 'c6_dl_dil', 'vh_right_c6', 'c6_vr_dil']
 data= []
@@ -48,7 +48,7 @@ pd.to_pickle(data, f'{out_dir}cope_ReliabilityRun.pickle')
 
 #%% All individual values
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/reliability/ReliabilityRun/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6']
 data= []
@@ -76,7 +76,7 @@ pd.to_pickle(data, f'{out_dir}all_stats_ReliabilityRun.pickle')
 #%% For spatial specificity, average over both sessions
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/glm/ReliabilityRun/cord/'
-out_dir = f'{project_dir}derivatives/results/spatial_specificity/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/spatial_specificity/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois_horns = ['dh_left', 'dh_right', 'vh_left', 'vh_right']
 rois_quadrants = ['dr', 'vr', 'dl', 'vl']
@@ -98,7 +98,7 @@ pd.to_pickle(data, f'{out_dir}cord_p_uncorr.pickle')
 #%% For spatial specificity, single sessions for dice index
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/glm/ReliabilityRun/dh_left_c6/'
-out_dir = f'{project_dir}derivatives/results/spatial_specificity/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/spatial_specificity/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 data= []
 for ses in ["ses-01", "ses-02"]:
