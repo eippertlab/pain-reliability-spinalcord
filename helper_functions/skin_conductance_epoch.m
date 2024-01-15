@@ -75,8 +75,8 @@ for ifile=1:numel(cfg.runs)
     title(['Run ' num2str(ifile)],'Interpreter','none') 
 end
 new_name = [cfg.sub,'_',cfg.ses];
-writematrix(scr_epo_all, [new_file_path,'/',name_stem,'_epochs.csv']);
-saveas(fighandle,strcat(new_file_path,name_stem,'_run_averages.png'))
+writematrix(scr_epo_all, [new_file_path,'/',name_stem,'_epochs_ReliabilityRun.csv']);
+saveas(fighandle,strcat(new_file_path,name_stem,'_run_averages_ReliabilityRun.png'))
 close(fighandle)
 end
 
