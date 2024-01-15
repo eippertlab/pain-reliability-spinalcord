@@ -83,7 +83,7 @@ for subject in {1..40}; do
         mv ${fname}_tmpInput_moco.nii.gz ${fname}_moco.nii.gz
         rm -f *tmpInput*
 
-        fslroi ${fname}_moco.nii.gz ${fname}_moco.nii.gz 1 $numvol #always see what this would add up to, when 140 then its
+        fslroi ${fname}_moco.nii.gz ${fname}_moco.nii.gz 1 $numvol 
         mv moco_params.tsv ${fname}_moco_params.tsv
         mv moco_params_x.nii.gz ${fname}_moco_params_x.nii.gz
         mv moco_params_y.nii.gz ${fname}_moco_params_y.nii.gz
