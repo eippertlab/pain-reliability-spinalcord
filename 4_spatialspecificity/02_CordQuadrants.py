@@ -15,7 +15,7 @@ import numpy as np
 
 #%% Directories
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
-data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
+data_dir = f'{project_dir}derivatives/results/ReliabilityRun/spatial_specificity/'
 out_dir = data_dir
 mask_dir = f'{project_dir}derivatives/masks/'
 
