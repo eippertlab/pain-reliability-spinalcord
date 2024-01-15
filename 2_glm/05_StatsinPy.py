@@ -48,7 +48,7 @@ pd.to_pickle(data, f'{out_dir}cope_ReliabilityRun.pickle')
 
 #%% All individual values
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/reliability/'
+out_dir = f'{project_dir}derivatives/results/reliability/ReliabilityRun/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6']
 data= []
