@@ -1,8 +1,9 @@
 #!/bin/bash
 # 05_T2w.sh
 
-#This script requires the usage of ANTs N4BiasFieldCorrection.
-#We used ANTs version 2.3.1
+#This script requires the usage of ANTs N4BiasFieldCorrection function. We used ANTs version 2.3.1
+# Additionally, you will need the helper function Denoising_T1.m, and Pierrick Coupés Denoising package "MRIdenoisingPackage_r01 ": https://sites.google.com/site/pierrickcoupe/softwares/denoising/mri-denoising/mri-denoising-software
+
 
 # What shall be done?
 cropAuto=1
@@ -18,6 +19,12 @@ cropA_sizeX=-1
 cropA_minY=0
 cropA_sizeY=-1
 cropA_minZ=0
+
+#Directories
+ants_dir=/afs/cbs.mpg.de/software/ants/2.3.1/ubuntu-bionic-amd64/antsbin/bin #edit path to your ANTs bin!
+github_folder=/data/pt_02306/main/code/github/pain-reliability-spinalcord #edit to your github folder 
+helper_functions=$github_folder/helper_functions
+package_dir=/data/u_dabbagh_software/MRIDenoisingPackage_r01_pcode/ #change this to your own path to the package!
 
 #loop over subjects
 for subject in {1..40}; do
@@ -98,7 +105,7 @@ for subject in {1..40}; do
       for file in $(find $out_dir/ -maxdepth 1 -name "*T2w.nii.gz"); do
         echo $file
         fname=$(basename "$file" | cut -d. -f1)
-        /afs/cbs.mpg.de/software/ants/2.3.1/ubuntu-bionic-amd64/antsbin/bin/N4BiasFieldCorrection \
+        $ants_dir/N4BiasFieldCorrection \
           -i ${fname}_crop.nii.gz \
           -o ${fname}_crop_biascorr.nii.gz \
           -c [200x200x200x200,0.000001]
@@ -110,9 +117,6 @@ for subject in {1..40}; do
     #3. denoising (via matlab)
     if [ $denoise -eq 1 ]; then
   echo "denoising sub" $sub "session" $ses
-  github_folder=/data/pt_02306/main/code/github/pain-reliability-spinalcord
-  helper_functions=$github_folder/helper_functions
-  package_dir=/data/u_dabbagh_software/MRIDenoisingPackage_r01_pcode/ #change this to your own path to the package!
   cd $out_dir
   echo $out_dir
   for file in $(find $out_dir/ -maxdepth 1 -name "*T2w.nii.gz"); do
