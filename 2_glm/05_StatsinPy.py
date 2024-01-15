@@ -17,7 +17,7 @@ def retain_quantile(data, percentile=0.9):
     
 #%% For reliability 
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/reliability/'
+out_dir = f'{project_dir}derivatives/results/reliability/ReliabilityRun/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6', 'c6_dl_dil', 'vh_right_c6', 'c6_vr_dil']
 data= []
