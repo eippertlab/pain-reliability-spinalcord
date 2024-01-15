@@ -58,7 +58,7 @@ for ifile=1:numel(cfg.runs)
     set(gca,'fontsize',16)
     legend show
     hold off
-    saveas(fighandle,fullfile(cfg.data, cfg.out, [new_name '_single_trial_ReliabilityRun.png']));
+    saveas(fighandle,fullfile(cfg.data, cfg.out, [new_name '_single_trial_CombinedRuns.png']));
     
     % make another plot with averages for each block
     
@@ -78,8 +78,8 @@ for ifile=1:numel(cfg.runs)
     ylabel('skin conductance \muS')
     title(['Run ' num2str(ifile)],'Interpreter','none') 
 end
-writematrix(scr_epo_all, [new_file_path,'/',new_name,'_scr_epochs_ReliabilityRun.csv']);
-saveas(fighandle,strcat(new_file_path,'/',new_name,'_run_averages_ReliabilityRun.png'))
+writematrix(scr_epo_all, [new_file_path,'/',new_name,'_scr_epochs_CombinedRuns.csv']);
+saveas(fighandle,strcat(new_file_path,'/',new_name,'_run_averages_CombinedRuns.png'))
 close(fighandle)
 end
 
