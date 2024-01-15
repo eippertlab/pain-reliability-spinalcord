@@ -19,7 +19,7 @@ for subject in {1..40}; do
     out_dir=$data_dir/normalization
     mkdir -p $out_dir
     data_dir_epi=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/preprocessing
-    out_dir_epi=$data_dir_epi/normalization/ReliabilityRun
+    out_dir_epi=$data_dir_epi/normalization
     mkdir -p $out_dir_epi
     template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template #insert here your path to the SCT PAM50 template
 
