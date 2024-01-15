@@ -9,7 +9,7 @@ normalize_feat=1
 #Directories
 original_fsf=/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_functions/design.fsf
 
-for subject in {5..8}; do
+for subject in {1..40}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
