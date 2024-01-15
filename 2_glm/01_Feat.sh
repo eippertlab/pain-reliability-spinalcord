@@ -78,7 +78,7 @@ for subject in {1..40}; do
                           -x spline
 
         #normalize copes
-        echo "normalizing cope image"
+        echo "normalizing zstat image"
         sct_apply_transfo -i $glm_dir/zstat1.nii.gz \
                           -d $template_dir/PAM50_t2.nii.gz \
                           -w $warp_dir/warp_${fname}_m2PAM50_t2s.nii.gz \
