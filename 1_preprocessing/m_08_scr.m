@@ -12,7 +12,7 @@ close
 %% 
 for isub=1:40
     sub=['sub-',num2str(isub,'%02.f')];
-    for session=1
+    for session=1:2
         ses=['ses-',num2str(session,'%02.f')];
         cfg = [];
         cfg.sub=sub
