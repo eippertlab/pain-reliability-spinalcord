@@ -51,8 +51,8 @@ def get_icc3_cope(df, roi):
     
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/reliability/'
-physio_dir = f'{project_dir}derivatives/results/physio/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
+physio_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 #%% Setting
 #What do you want to calculate reliability for?
 #cope1 or zstat1
