@@ -115,10 +115,10 @@ for irun = 1:numel(cfg.runs)
     title(['block ' num2str(irun)])
 end
 
-new_name = [name_stem];
-writematrix(pd_epo_all, [new_file_path,'/',name_stem,'_epochs.csv']);
-writematrix(blink_epo_all, [new_file_path,'/',name_stem,'_blinks.csv']);
-writetable(epoch_info_all,fullfile(new_file_path,[name_stem '_epoch_info.csv']),...
+new_name = [cfg.sub,'_',cfg.ses];
+writematrix(pd_epo_all, [new_file_path,'/',new_name,'_epochs_ReliabilityRun.csv']);
+writematrix(blink_epo_all, [new_file_path,'/',new_name,'_blinks_ReliabilityRun.csv']);
+writetable(epoch_info_all,fullfile(new_file_path,[new_name '_epoch_info_ReliabilityRun.csv']),...
     'FileType','text','Delimiter',',');
 
 % % cheat to get the legend to the right as if it were a seperate subplot
@@ -134,8 +134,8 @@ end
 hold off
 axis off
 legend(legend_label, 'Location', 'southeastoutside')
-saveas(fighandle,fullfile(new_file_path,[new_name '_run_average.png']))
-saveas(fighandle2,fullfile(new_file_path,[new_name '_single_trial.png']))
+saveas(fighandle,fullfile(new_file_path,[new_name '_run_average_ReliabilityRun.png']))
+saveas(fighandle2,fullfile(new_file_path,[new_name '_single_trial_ReliabilityRun.png']))
 % close(fighandle)
 % close(fighandle2)
 end
