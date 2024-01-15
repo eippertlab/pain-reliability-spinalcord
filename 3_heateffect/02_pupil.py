@@ -42,7 +42,7 @@ for subject in range(1, 41):
         print('session: ', ses)
         # Define directory and files
         data_dir = f'{project_dir}derivatives/{sub}/{ses}/physio/pupil/'
-        file_pattern = f'{data_dir}{sub}*ReliabilityRun*eyetrack_epochs.csv'
+        file_pattern = f'{data_dir}{sub}_{ses}_pupil_epochs_ReliabilityRun.csv'
         files = glob.glob(file_pattern)
         for file in files:
             tmp = pd.read_csv(file, header=None)
