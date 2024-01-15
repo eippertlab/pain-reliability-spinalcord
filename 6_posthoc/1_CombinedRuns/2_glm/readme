@@ -1,0 +1,3 @@
+# Explanations for preprocessing of combined runs
+
+* For masks: just use 02_Masks.sh in github/pain-reliability-spinalcord/2_glm/ of the "ReliabilityRun" pipeline, no need to change for this pipeline :)

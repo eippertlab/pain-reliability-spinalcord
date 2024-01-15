@@ -1,0 +1,3 @@
+# Explanations for preprocessing of combined runs
+
+* For 05_T2w processing: just use github/pain-reliability-spinalcord/1_preprocessing/ of the "ReliabilityRun" pipeline, no need to change for this pipeline :)
