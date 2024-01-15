@@ -18,7 +18,7 @@ import glob
 
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/physio/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 
 #%% Import data
 data = [] 
