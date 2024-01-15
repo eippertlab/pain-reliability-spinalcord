@@ -78,7 +78,7 @@ data_session['sem'] = data_session['sd']/sqrt(sub_n)
 #%% Reliability and ttest between peaks,
 #for scr look for peak between 0 and 8s relative to heat onset
 #for pupil look for peak between 0 and 4 seconds relative to heat onset
-data_sample = data[(data["epoch"]>=100)&(data["epoch"]<900)] #the interval is 11 second long, goes from -1 to 1000, so this is taking 0 to 8 seconds
+data_sample = data[(data["epoch"]>=100)&(data["epoch"]<500)] #the interval is 11 second long, goes from -1 to 1000, so this is taking 0 to 4 seconds
 data_sample_max = data_sample.groupby(["sub","ses","trial"])["val_scaled"].max().reset_index()
 data_sample_max_avg = data_sample_max.groupby(["sub","ses"])["val_scaled"].mean().reset_index()
 #Reliability
