@@ -13,7 +13,7 @@ new_file_path = fullfile(cfg.data,cfg.out);
 fighandle = figure('units','normalized','outerposition',[0 0 1 1]);
 
 scr_epo_all = [];
-
+new_name = [cfg.sub,'_',cfg.ses];
 for ifile=1:numel(cfg.runs)
     name_stem = fullfile([cfg.runs{ifile}]);
     scr_file = fullfile(raw_file_path, [name_stem '.tsv']);
@@ -54,7 +54,7 @@ for ifile=1:numel(cfg.runs)
     set(gca,'fontsize',16)
     legend show
     hold off
-    saveas(fighandle,fullfile(cfg.data, cfg.out, [name_stem '_single_trial.png']));
+    saveas(fighandle,fullfile(cfg.data, cfg.out, [new_name '_single_trial_ReliabilityRun.png']));
     
     % make another plot with averages for each block
     
@@ -74,7 +74,6 @@ for ifile=1:numel(cfg.runs)
     ylabel('skin conductance \muS')
     title(['Run ' num2str(ifile)],'Interpreter','none') 
 end
-new_name = [cfg.sub,'_',cfg.ses];
 writematrix(scr_epo_all, [new_file_path,'/',name_stem,'_epochs_ReliabilityRun.csv']);
 saveas(fighandle,strcat(new_file_path,name_stem,'_run_averages_ReliabilityRun.png'))
 close(fighandle)
