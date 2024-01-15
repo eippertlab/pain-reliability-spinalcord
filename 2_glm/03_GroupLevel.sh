@@ -26,7 +26,7 @@ if [ $prep_sessionwise = 1 ]; then
 
 		# Loop across sessions for data preparation
 		full_cope=()
-		for subject in {1..8}; do #{1..40}; do
+		for subject in {1..40}; do
 			printf -v sub "%02d" $subject
       #subject directory
 			data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/ReliabilityRun.feat/stats/normalization
