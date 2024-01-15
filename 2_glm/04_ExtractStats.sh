@@ -31,9 +31,9 @@ if [ $extract_single_level -eq 1 ]; then
 			mkdir -p $out_dir
 			for stat in cope1 zstat1; do
 				sct_register_multimodal -i $data_dir/${stat}_reg.nii.gz \
-																-d $mask_dir/PAM50_cord.nii.gz \
-																-identity 1 \
-																-o $data_dir/${stat}_reg.nii.gz
+							-d $mask_dir/PAM50_cord.nii.gz \
+							-identity 1 \
+							-o $data_dir/${stat}_reg.nii.gz
 
 				for mask in dh_left_c6 vh_right_c6 c6_dl_dil c6_vr_dil; do
 				  fslmaths $data_dir/${stat}_reg.nii.gz -mas $mask_dir/${mask}.nii.gz $out_dir/${stat}_${mask}.nii.gz
