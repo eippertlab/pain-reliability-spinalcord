@@ -26,7 +26,7 @@ import pingouin as pg
 
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/physio/'
+out_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 #%% Epoch and finalize data
 hpr = []
