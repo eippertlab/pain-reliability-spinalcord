@@ -1,3 +1,4 @@
+![GitHub Release](https://img.shields.io/github/v/release/eippertlab/pain-reliability-spinalcord)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![grafik](https://github.com/eippertlab/pain-reliability-spinalcord/assets/41791453/a4a43b98-38d6-40f9-8d3b-1d937a052081)
 
