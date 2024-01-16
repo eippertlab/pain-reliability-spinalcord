@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # pain-reliability-spinalcord
 This repository is associated with the following [manuscript](https://www.biorxiv.org/content/10.1101/2023.12.22.572825v1) and the corresponding [dataset](https://openneuro.org/datasets/ds004926). If you have any questions regarding this code, please feel free to reach out to dabbagh@cbs.mpg.de.
 
