@@ -43,6 +43,6 @@ For preprocessing and calculation of results the following software was used:
 * Spinal cord toolbox: sct_5.5
 * Matlab version used: 9.13.0.2049777 (R2022b)
 * FSL version 6.0.3
-* PSPM toolbox: PsPM_v6.0.0; for code in folder 7_quality PsPM6.1
+* PSPM toolbox: PsPM6.1
 * EEGlab: eglab2019_0
 * For ANTs N4BiasFieldCorrection: ANTs version 2.3.1
