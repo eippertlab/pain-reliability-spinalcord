@@ -59,7 +59,7 @@ for subject in {1..40}; do
       numvol=()
       for file in $(find $out_dir/ -maxdepth 1 -name "*bold_denoised.nii.gz"); do
         fname=$(basename "$file" | cut -d. -f1)
-        all_blocks+=( "$fname" )
+        all_runs+=( "$fname" )
         all_files+=( "$fname.nii.gz" )
       done
       IFS=$'\n' all_files=($(sort <<<"${all_files[*]}"))
