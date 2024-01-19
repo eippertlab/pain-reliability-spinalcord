@@ -25,7 +25,7 @@ Path(out_dir).mkdir(parents=True, exist_ok=True)
 
 #%% Import data
 data = []
-for subject in range(1, 5): 
+for subject in range(1, 41): 
     sub = 'sub-' + str(subject).zfill(2)
     print('subject: ',sub)
     #Loop over sessions
