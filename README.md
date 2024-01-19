@@ -13,8 +13,11 @@ This repository contains the preprocessing and analysis code needed to assess th
 * 3_heateffect: Assessing and plotting the effect of the heat stimulus for fMRI data and physiological measures and ratings
 * 4_spatialspecificity: Plotting spatial specificity across all levels of the spinal cord in the GM horns, assessing the percentage of active voxels in each quadrant per level, and calculating dice coefficients for the left DH C6 on both group and individual level
 * 5_reliability: Calculating & plotting ICCs for each domain of interest
-* 6_posthoc: Preprocessing and analysis code needed to assess changes in reliability from three further sets of analyses, which we had not specified in the preregistration: Increasing the number of runs, accounting for spontaneous activations and within-run reliability. The main pipelineneeds to be run first! The order in which the sub-analyses need to be run is indicated by numbers.
+  
+Section 1_preprocessing - 5_reliability make up the ReliabilityRun pipeline!
 
+* 6_posthoc: Preprocessing and analysis code needed to assess changes in reliability from three further sets of analyses, which we had not specified in the preregistration: Increasing the number of runs, accounting for spontaneous activations and within-run reliability. The main pipelineneeds to be run first! The order in which the sub-analyses need to be run is indicated by numbers.
+* 7_quality: Analysis of physiological state and data quality of the reliability run across days
 * helper_functions: Functions / templates needed for running the rest of the code
 
 Bash scripts end on .sh, matlab scripts on .m and python scripts on .py! The number of the scripts tell you the order in which they should be run.
@@ -41,6 +44,6 @@ For preprocessing and calculation of results the following software was used:
 * Spinal cord toolbox: sct_5.5
 * Matlab version used: 9.13.0.2049777 (R2022b)
 * FSL version 6.0.3
-* PSPM toolbox: PsPM_v6.0.0
+* PSPM toolbox: PsPM_v6.0.0; for code in folder 7_quality PsPM6.1
 * EEGlab: eglab2019_0
 * For ANTs N4BiasFieldCorrection: ANTs version 2.3.1
