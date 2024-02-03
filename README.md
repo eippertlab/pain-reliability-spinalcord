@@ -1,4 +1,4 @@
-![GitHub Release](https://img.shields.io/github/v/release/eippertlab/pain-reliability-spinalcord)
+[![GitHub Release](https://img.shields.io/github/v/release/eippertlab/pain-reliability-spinalcord)](https://github.com/eippertlab/pain-reliability-spinalcord/releases/tag/v1.0)
 [![DOI](https://zenodo.org/badge/733083740.svg)](https://zenodo.org/doi/10.5281/zenodo.10518643)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
