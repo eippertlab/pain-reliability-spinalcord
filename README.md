@@ -23,7 +23,7 @@ Bash scripts end on .sh, matlab scripts on .m and python scripts on .py! The num
 
 ## Required software
 * [MATLAB](https://de.mathworks.com/products/matlab.html) , version R2022b or higher
-* [Spinal Cord Toolbox (SCT)](https://spinalcordtoolbox.com/index.html), version 5.5
+* [Spinal Cord Toolbox (SCT)](https://spinalcordtoolbox.com/index.html), version 5.5; segmental mask coordinates from version 6.1
 * [FSL](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSL) version 5.0 or higher
 * [Python](https://www.python.org/) version 3.10.9
 * For python packages: see requirements_python.txt
