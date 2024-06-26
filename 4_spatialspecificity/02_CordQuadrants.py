@@ -6,16 +6,19 @@ pandas version: 1.5.0
 seaborn version: 0.11.0
 matplotlib version: 3.6.3
 """
-#%% Modules
+
+#%% Improt Modules
 import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
 #%% Directories
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
 out_dir = data_dir
 mask_dir = f'{project_dir}derivatives/masks/'
+
 #%% Import and prepare data
 data = pd.read_pickle(f'{data_dir}cord_p_uncorr.pickle')
 rois_quadrants = ['dr', 'vr', 'dl', 'vl']
@@ -24,6 +27,7 @@ data = data[data["roi"].isin(rois_quadrants)]
 data["pval"] = 1 - data["val"]
 data_thresh = data[data["pval"]<0.001]
 data_thresh = data[data["pval"]<0.1]
+
 #%%
 percentages_quarterly = []
 for level in levels:
@@ -46,7 +50,7 @@ for level in levels:
 # Convert to DataFrame at the end
 percentages_df = pd.DataFrame(percentages_quarterly)
 
-#%% #%% Fig. 4. Spatial specificity of BOLD responses across cord quadrants.
+#%% Fig. 4. Spatial specificity of BOLD responses across cord quadrants.
 mpl.rcParams['pdf.fonttype'] = 42
 sns.set(style="white")  
 with sns.plotting_context('paper', font_scale=1.5):
