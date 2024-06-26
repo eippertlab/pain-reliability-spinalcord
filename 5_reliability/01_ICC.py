@@ -14,6 +14,7 @@ import matplotlib.pylab as plt
 import pingouin as pg
 from matplotlib.patches import Rectangle
 import matplotlib as mpl
+
 #%% Functions
 def get_icc3_phys(df):
     out = pd.DataFrame(columns=["roi", "ICC3", "ci_low", "ci_high", "group"])
@@ -48,14 +49,17 @@ def get_icc3_cope(df, roi):
     out = out.append({"roi":roi, "ICC3": value, "ci_low": ci_low,
                       "ci_high": ci_high, "group":"BOLD"}, ignore_index=True)
     return out
+    
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/reliability/'
 physio_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
+
 #%% Setting
 #What do you want to calculate reliability for?
 #cope1 or zstat1
 stat = "cope1"
+
 #%% Import data
 scr = pd.read_csv(f'{physio_dir}peak_scr_ReliabilityRun.csv')
 scr = scr.rename(columns={"val_scaled":"maxval"}).drop("Unnamed: 0", axis=1)
@@ -79,8 +83,8 @@ dhl = copes[copes["roi"]=="dh_left_c6"]
 dl_dil = copes[copes["roi"]=="c6_dl_dil"]
 vhr = copes[copes["roi"]=="vh_right_c6"]
 vr_dil = copes[copes["roi"]=="c6_vr_dil"]
-#%%
-#Ttests
+
+#%% Ttests
 #Ratings
 test_ratings = pg.pairwise_tests(data=ratings, dv="value", subject="sub", within="ses",
                  alpha=0.05, parametric=True)
@@ -96,6 +100,7 @@ print(f'p-value ttest pdr across days: {test_pdr["p-unc"].values[0]}')
 #test HPR
 test_hpr = pg.pairwise_tests(data=hpr, dv="maxval", subject="sub", within="ses",alpha=0.05, parametric=True)
 print(f'p-value ttest hpr across days: {test_hpr["p-unc"].values[0]}')
+
 #%%
 icc_table_ratings = get_icc3_rating(ratings)
 icc_table_ratings["errsize"] = (icc_table_ratings["ci_high"] - icc_table_ratings["ci_low"])/2
@@ -119,7 +124,7 @@ icc_table_vr_dil["errsize"] = (icc_table_vr_dil["ci_high"] - icc_table_vr_dil["c
 icc_table = icc_table.append([icc_table_ratings, icc_table_cope, icc_table_dl_dil,
                               icc_table_vhrc6, icc_table_vr_dil], ignore_index=True)
 
-#%%# Fig. 7: Test-retest reliability across both days for subjective ratings, peripheral physiological data and BOLD response amplitudes.
+#%% Fig. 7: Test-retest reliability across both days for subjective ratings, peripheral physiological data and BOLD response amplitudes.
 icc_table["order"] = [1, 2, 3, 0, 4, 5, 6, 7]
 badcolor="#cc4c02"
 faircolor="#fe9929"
