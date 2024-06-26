@@ -30,7 +30,7 @@ x = np.linspace(-1, 10, num=1100)
 excluded_subjects = {16, 39}
 
 # Loop over subjects
-for subject in range(1, 5):
+for subject in range(1, 40):
     if subject in excluded_subjects:
         continue
     sub = f'sub-{str(subject).zfill(2)}'
