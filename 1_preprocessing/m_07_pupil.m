@@ -12,8 +12,8 @@ clear
 addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/1_preprocessing/'
 addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_functions/'
 
-%% Directories and files%%
-for subject=1:4
+%% Directories and files %%
+for subject=1:40
     sub =  ['sub-',num2str(subject,'%02.f')];
     for session=1:2
         ses =  ['ses-',num2str(session,'%02.f')];
