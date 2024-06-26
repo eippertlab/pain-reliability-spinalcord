@@ -1,16 +1,16 @@
 #!/bin/bash
-# 03_GroupLevelCombined.sh
+# 02_2ndLevel.sh
 
 #what shall be done
 prep_sessionwise=1
-run_dhl_sessionwise=1
-run_cord_sessionwise=1
-run_cord_dil_sessionwise=1
+run_dhl_sessionwise=0
+run_cord_sessionwise=0
+run_cord_dil_sessionwise=0
 
-prep_avg=1
-run_dhl_avg=1
-run_cord_avg=1
-run_cord_dil_avg=1
+prep_avg=0
+run_dhl_avg=0
+run_cord_avg=0
+run_cord_dil_avg=0
 
 #Directories
 template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template
@@ -28,7 +28,7 @@ if [ $prep_sessionwise = 1 ]; then
 		# Loop across sessions for data preparation
 		ses_cope=()
 		full_cope=()
-		for subject in {1..40}; do 
+		for subject in {1..40}; do #{1..40}; do
 			printf -v sub "%02d" $subject
 			sub_cope=()
 			sub_zstat=() #zstat is not needed for second level, but for later reliability analysis

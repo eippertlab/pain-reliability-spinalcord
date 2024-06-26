@@ -26,7 +26,7 @@ Path(out_dir).mkdir(parents=True, exist_ok=True)
 
 #%% 
 data= []
-for subject in range(1, 41):
+for subject in range(1, 5):
     sub = 'sub-' + str(subject).zfill(2)
     print('subject: ',sub)
     #Loop over sessions
@@ -62,7 +62,7 @@ data_ttest.std()
 ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
 print(ttest['p-val'])
 
-#%% Fig. 5. Physiological state and data quality across days, TSNR
+#%% Fig. 6. Physiological state and data quality across days, TSNR
 mpl.rcParams['pdf.fonttype'] = 42
 sns.set(style="white",font_scale=2.8) 
 ses1_color="#d95f02"

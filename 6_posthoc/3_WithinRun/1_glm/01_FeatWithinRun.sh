@@ -54,7 +54,7 @@ for subject in {1..40}; do
             event_type_array=("early" "late")
           fi
           out_dir=$out_dir_fsf/$within_type
-          original_fsf=/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_functions/design_withinRun_v2.fsf
+          original_fsf=/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_functions/design_withinRun.fsf
 
           #define out dir
           sed "s+/data/pt_02306/main/data/pain-reliability-spinalcord/derivatives/sub-01/ses-01/func/glm/WithinRun/early_late+$out_dir+g" $original_fsf > $out_dir_fsf/${fname}_$within_type.fsf

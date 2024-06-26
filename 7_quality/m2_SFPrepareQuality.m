@@ -1,6 +1,6 @@
 % uses PSPM toolbox
 % https://github.com/bachlab/PsPM
-% version used here: PsPM_v6.0.0
+% version used here: PsPM6.1
 %% Prep code
 addpath('/data/u_dabbagh_software/PsPM6.1', '-end');
 write_data=1

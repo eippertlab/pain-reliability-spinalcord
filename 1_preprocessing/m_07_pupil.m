@@ -2,7 +2,7 @@
 % for predcod behav first replication dataset
 % uses PSPM toolbox
 % https://github.com/bachlab/PsPM
-% version used here: PsPM_v6.1
+% version used here: PsPM_v6.0.0
 % Ulrike Horn
 % uhorn@cbs.mpg.de
 % adapted by Alice Dabbagh (dabbagh@cbs.mpg.de)
@@ -13,7 +13,7 @@ addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/1_preproces
 addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_functions/'
 
 %% Directories and files%%
-for subject=1:40
+for subject=1:4
     sub =  ['sub-',num2str(subject,'%02.f')];
     for session=1:2
         ses =  ['ses-',num2str(session,'%02.f')];

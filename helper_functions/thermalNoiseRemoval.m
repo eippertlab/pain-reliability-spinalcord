@@ -24,7 +24,7 @@ function thermalNoiseRemoval(filein, name, ofolder)
 
 
 % Set up relevant environment & path
-addpath('/data/u_dabbagh_software/mppca_denoise') %add your own directory here following the instructions above
+addpath('/data/u_dabbagh_software/mppca_denoise') %add your own directory here following the isntructions above
 addpath('/afs/cbs.mpg.de/software/fsl/6.0.3/ubuntu-bionic-amd64/etc/matlab'); %add your own matlab directory 
 setenv('FSLOUTPUTTYPE', 'NIFTI_GZ')
 

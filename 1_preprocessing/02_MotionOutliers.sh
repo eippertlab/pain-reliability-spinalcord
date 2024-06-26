@@ -1,11 +1,11 @@
 #!/bin/bash
-# fsl_motion_outliers_edited is the helper function you will need here.
+# SpinalLearning_2020_MotionOutliers is the helper function you will need here.
 
 #1. find motion outliers in mocoed blocks
 echo "detecting motion outliers for refined moco, reliability run"
 
 # Loop across sessions for data preparation
-for subject in {1..40}; do
+for subject in {1..5}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session

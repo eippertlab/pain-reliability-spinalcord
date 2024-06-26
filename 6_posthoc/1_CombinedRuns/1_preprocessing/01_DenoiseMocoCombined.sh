@@ -6,10 +6,10 @@ prepData=1
 thermnoise=1
 moco=1
 moco_refined=1
-csf_mask=1
+csf_mask=0
 
 # Loop across sessions for data preparation
-for subject in {1..40}; do
+for subject in {1..41}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
@@ -59,7 +59,7 @@ for subject in {1..40}; do
       numvol=()
       for file in $(find $out_dir/ -maxdepth 1 -name "*bold_denoised.nii.gz"); do
         fname=$(basename "$file" | cut -d. -f1)
-        all_runs+=( "$fname" )
+        all_blocks+=( "$fname" )
         all_files+=( "$fname.nii.gz" )
       done
       IFS=$'\n' all_files=($(sort <<<"${all_files[*]}"))

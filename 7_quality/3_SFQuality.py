@@ -77,7 +77,7 @@ order_box = [[None], ['ses-01'], [None]*(space), ['ses-02'], [None]]
 order_box = [item for sublist in order_box for item in sublist]
 data['X'] = 2
 data.X[data.ses=='ses-02'] = space + 1
-#%% Fig. 5. Physiological state and data quality across days, SF
+#%% Fig. 6. Physiological state and data quality across days, SF
 my_pal = {"ses-01": "#d95f02", "ses-02": "#7570b3"}
 warnings.filterwarnings("ignore") 
 mpl.rcParams['pdf.fonttype'] = 42

@@ -10,7 +10,7 @@ addpath(genpath('/data/pt_02098/Toolbox/eeglab2019_0/'))
 eeglab
 close
 %% 
-for isub=1:40
+for isub=1:4
     sub=['sub-',num2str(isub,'%02.f')];
     for session=1:2
         ses=['ses-',num2str(session,'%02.f')];

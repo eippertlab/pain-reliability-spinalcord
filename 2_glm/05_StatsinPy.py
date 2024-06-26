@@ -4,24 +4,22 @@
 Python version: 3.10.9
 pandas version: 1.5.0
 """
-#%% Import modules
+#%% Modules
 import pandas as pd
 import warnings
 from pathlib import Path
 warnings.filterwarnings("ignore")
-
 #%% Functions
 def retain_quantile(data, percentile=0.9):
     percentile_val = data[3].quantile(percentile)
     return data[data[3] >= percentile_val]
-    
 #%% For reliability 
-project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
+project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord"
+out_dir = f'{project_dir}derivatives/results/reliability/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6', 'c6_dl_dil', 'vh_right_c6', 'c6_vr_dil']
 data= []
-for subject in range(1, 41):
+for subject in range(1, 5):
     sub = 'sub-' + str(subject).zfill(2)
     print('subject: ',sub)
     #Loop over sessions
@@ -45,10 +43,9 @@ for subject in range(1, 41):
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}cope_ReliabilityRun.pickle')
-
 #%% All individual values
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
-out_dir = f'{project_dir}derivatives/results/ReliabilityRun/reliability/'
+out_dir = f'{project_dir}derivatives/results/reliability/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6']
 data= []
@@ -72,11 +69,10 @@ for subject in range(1, 5):
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}all_stats_ReliabilityRun.pickle')
-
 #%% For spatial specificity, average over both sessions
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/glm/ReliabilityRun/cord/'
-out_dir = f'{project_dir}derivatives/results/ReliabilityRun/spatial_specificity/'
+out_dir = f'{project_dir}derivatives/results/spatial_specificity/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois_horns = ['dh_left', 'dh_right', 'vh_left', 'vh_right']
 rois_quadrants = ['dr', 'vr', 'dl', 'vl']
@@ -94,11 +90,10 @@ for roi_choice in roi_choice:
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}cord_p_uncorr.pickle')
-
 #%% For spatial specificity, single sessions for dice index
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/glm/ReliabilityRun/dh_left_c6/'
-out_dir = f'{project_dir}derivatives/results/ReliabilityRun/spatial_specificity/'
+out_dir = f'{project_dir}derivatives/results/spatial_specificity/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 data= []
 for ses in ["ses-01", "ses-02"]:

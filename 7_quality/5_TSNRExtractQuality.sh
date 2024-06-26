@@ -2,7 +2,7 @@
 # 5_TSNRExtractQuality.sh
 
 # Loop across sessions for data preparation
-for subject in {1..40}; do
+for subject in {1..4}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session

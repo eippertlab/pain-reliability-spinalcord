@@ -1,5 +1,5 @@
 #!/bin/bash
-# 04_ExtractStatsCombined.sh
+# 04_ExtractStats.sh
 
 #on subject level we need:
 #peak zstat & cope, #avg zstat & cope, all values in respective ROI zstat & cope

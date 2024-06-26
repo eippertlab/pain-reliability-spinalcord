@@ -8,7 +8,6 @@ numpy version: 1.23.3
 matplotlib version: 3.6.3
 pingouin version: 0.5.3
 """
-#%% Import Modules
 import pandas as pd
 import seaborn as sns
 import numpy as np
@@ -19,12 +18,10 @@ import matplotlib as mpl
 import glob
 from pathlib import Path
 import pingouin as pg
-
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
-
 #%% Import data
 data = [] 
 x = np.linspace(-1, 10, num=1100)  
@@ -32,7 +29,7 @@ x = np.linspace(-1, 10, num=1100)
 excluded_subjects = {16, 22, 28, 30, 11, 13}
 
 # Loop over subjects
-for subject in range(1, 41):
+for subject in range(1, 5):
     if subject in excluded_subjects:
         continue
     sub = f'sub-{str(subject).zfill(2)}'
@@ -78,7 +75,7 @@ data_session['sem'] = data_session['sd']/sqrt(sub_n)
 #%% Reliability and ttest between peaks,
 #for scr look for peak between 0 and 8s relative to heat onset
 #for pupil look for peak between 0 and 4 seconds relative to heat onset
-data_sample = data[(data["epoch"]>=100)&(data["epoch"]<500)] #the interval is 11 second long, goes from -1 to 1000, so this is taking 0 to 4 seconds
+data_sample = data[(data["epoch"]>=100)&(data["epoch"]<900)] #the interval is 11 second long, goes from -1 to 1000, so this is taking 0 to 8 seconds
 data_sample_max = data_sample.groupby(["sub","ses","trial"])["val_scaled"].max().reset_index()
 data_sample_max_avg = data_sample_max.groupby(["sub","ses"])["val_scaled"].mean().reset_index()
 #Reliability
@@ -87,7 +84,6 @@ data_sample_max_avg.to_csv(f'{out_dir}peak_pupil_ReliabilityRun.csv')
 #Difference
 data_ttest = data_sample_max_avg.pivot_table(values="val_scaled", columns="ses", index="sub")
 ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
-
 #%% Figure 2. Subjective and peripheral physiological responses, PDR
 x = pd.Series(np.linspace(-1, 10, num=1100))
     

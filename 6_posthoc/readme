@@ -1,3 +1,6 @@
 # Explanations for running ICC_PostHoc.py (for supplementary Figure 3. Test-retest reliability across both days for subjective ratings, peripheral physiological data and BOLD response amplitudes)
 
-Its necessary to Run the ReliabilityRun pipeline first, and then all the scripts in each of the 3 subdirectories of 6_posthoc!
+Its necessary to Run the ReliabilityRun pipeline first, and then all the scripts in subdirectories 1 to 3 of 6_posthoc!
+
+Subdirectory 4 contains posthoc analyses to calculate correlations between BOLD results and non-BOLD data as well as data quality indicators.
+ 

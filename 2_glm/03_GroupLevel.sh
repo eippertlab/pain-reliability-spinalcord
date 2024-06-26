@@ -1,17 +1,18 @@
 #!/bin/bash
-# 03_GroupLevel.sh
+# 02_2ndLevel.sh
 
 #what shall be done
-prep_sessionwise=1
-run_dhl_sessionwise=1
-run_cord_sessionwise=1
-run_cord_dil_sessionwise=1
+prep_sessionwise=0
+run_dhl_sessionwise=0
+run_cord_sessionwise=0
+run_cord_dil_sessionwise=0
 
-prep_avg=1
-run_dhl_avg=1
-run_cord_avg=1
-run_cord_dil_avg=1
+prep_avg=0
+run_dhl_avg=0
+run_cord_avg=0
+run_cord_dil_avg=0
 
+get_copezstat=1
 #Directories
 template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template
 project_dir=/data/pt_02306/main/data/pain-reliability-spinalcord
@@ -26,7 +27,7 @@ if [ $prep_sessionwise = 1 ]; then
 
 		# Loop across sessions for data preparation
 		full_cope=()
-		for subject in {1..40}; do
+		for subject in {1..8}; do #{1..40}; do
 			printf -v sub "%02d" $subject
       #subject directory
 			data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/ReliabilityRun.feat/stats/normalization
@@ -96,26 +97,31 @@ if [ $prep_avg = 1 ]; then
 		cope_dir=$groupdir/copes
 		mkdir -p $cope_dir
 		full_cope=()
+		cope_count=0
 		# Loop across subjects and sessions sessions for data preparation
 		for subject in {1..4}; do
 			echo "subject: $sub"
 			printf -v sub "%02d" $subject
 			sub_cope=()
+			sub_cope_count=0
 			for session in {1..2}; do
 				printf -v ses "%02d" $session
 	      #Directories
 				data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/ReliabilityRun.feat/stats/normalization
 				sub_cope+="$data_dir/cope1_reg.nii.gz "
+				((sub_cope_count++))
 				if [[ $session = 2 ]]; then
 					echo "$sub_cope"
+					echo "number of sub-copes: $sub_cope_count"
 					fslmerge -t $cope_dir/merge_sub-${sub}.nii.gz ${sub_cope[@]}
 					fslmaths $cope_dir/merge_sub-${sub}.nii.gz -Tmean $cope_dir/cope_m_sub-${sub}.nii.gz
 					full_cope+="$cope_dir/cope_m_sub-${sub}.nii.gz "
+					((cope_count++))
 				fi
 			done
 		done
 		echo ${full_cope[@]}
-		echo "now merging! "
+		echo "now merging: $cope_count"
 		fslmerge -t $cope_dir/cope_merged.nii.gz ${full_cope[@]}
 
 		echo "done merging, now cutting!"
@@ -128,7 +134,7 @@ if [ $run_dhl_avg = 1 ]; then
 	groupdir=$project_dir/derivatives/results/glm/ReliabilityRun
 	mkdir -p $groupdir/dh_left_c6
 	echo "running the avg 2nd level analysis for dh left c6"
-	randomise -i $groupdir/copes/cope_merged.nii.gz -m $groupdir/dh_left_c6/dh_left_c6.nii.gz -o $groupdir/dh_left_c6/dh_left_c6_avg_OneSampT_masked -1 --uncorrp -T -x -c 2.3 -C 2.3
+	randomise -i $groupdir/copes/cope_merged.nii.gz -m $groupdir/dh_left_c6/dh_left_c6.nii.gz -o $design_dir/$groupdir/dh_left_c6/dh_left_c6_avg_OneSampT_masked -1 --uncorrp -T -x -c 2.3 -C 2.3
  fi
 
  if [ $run_cord_avg = 1 ]; then

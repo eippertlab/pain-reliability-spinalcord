@@ -72,11 +72,11 @@ def get_icc3_withinrun(df, modality):
     tmp = df.copy()
     if modality in ["scr", "pdr", "hpr"]:
         meas = "val_scaled"
-        rater = "subset"
+        rater = "subset_type"
         group = "phys"
     if modality in ["dhl"]:
         meas = "top10"
-        rater = "subset"
+        rater = "subset_type"
         group = "BOLD"
     output_tmp = pg.intraclass_corr(data=tmp, targets="sub", raters=rater, ratings=meas)
     value = output_tmp['ICC'][2]

@@ -2,7 +2,7 @@
 % for predcod behav first replication dataset
 % uses PSPM toolbox
 % https://github.com/bachlab/PsPM
-% version used here: PsPM_v6.1
+% version used here: PsPM_v6.0.0
 % Ulrike Horn
 % uhorn@cbs.mpg.de
 % adapted by Alice Dabbagh (dabbagh@cbs.mpg.de)
@@ -23,7 +23,7 @@ for subject=1:40
         cfg.out = 'pupil';
         cfg.ses = ses;
         cfg.sub=sub;
-        cfg.pspm_path = '/data/u_dabbagh_software/PsPM_v6.1/';
+        cfg.pspm_path = '/data/u_dabbagh_software/PsPM_v6.0.0/';
         epoch_pupil = 1;            % epoch data into trials and create one datafile for all
         %% prepare the files %%
         cd(cfg.data)

@@ -9,7 +9,7 @@ moco_refined=1
 csf_mask=1
 
 # Loop across sessions for data preparation
-for subject in {1..40}; do
+for subject in {1..4}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
@@ -46,7 +46,6 @@ for subject in {1..40}; do
         folderout=$out_dir/
         #run function function thermalNoiseRemoval(filein, name, ofolder)
         matlab_script_dir=$github_folder/helper_functions/ #your github code folder here with
-        #please edit the relevant pathways in the thermalNoiseRemoval script!
         matlab -nosplash -nodesktop -r "addpath(genpath('${matlab_script_dir}')); \
                                         try; thermalNoiseRemoval('$datain', '$fname', '$folderout'); catch ME; disp(ME); end; quit;"; # run matlab function from command line
       done
@@ -60,10 +59,9 @@ for subject in {1..40}; do
       for file in $(find $out_dir/ -maxdepth 1 -name "*te40ReliabilityRun*bold_denoised.nii.gz"); do
         echo "running moco"
         fname=$(basename "$file" | cut -d. -f1)
-        # Create overall mean
         fslmaths $file -Tmean ${fname}_m.nii.gz
 
-        # Create mask to be used for moco, based on this new overall mean
+        # B) Create mask to be used for moco, based on this new overall mean
         echo "segmentation"
         sct_deepseg_sc -i ${fname}_m.nii.gz -c t2s
 
@@ -84,7 +82,7 @@ for subject in {1..40}; do
         mv ${fname}_tmpInput_moco.nii.gz ${fname}_moco.nii.gz
         rm -f *tmpInput*
 
-        fslroi ${fname}_moco.nii.gz ${fname}_moco.nii.gz 1 $numvol 
+        fslroi ${fname}_moco.nii.gz ${fname}_moco.nii.gz 1 $numvol #always see what this would add up to, when 140 then its
         mv moco_params.tsv ${fname}_moco_params.tsv
         mv moco_params_x.nii.gz ${fname}_moco_params_x.nii.gz
         mv moco_params_y.nii.gz ${fname}_moco_params_y.nii.gz

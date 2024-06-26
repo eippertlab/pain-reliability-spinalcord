@@ -1,12 +1,12 @@
 #!/bin/sh
-# 04_PNM.sh
+# 06_b_pnm_thermnoise.sh
 
 # What shall be done
 prepInput=1
 runpnm=1
 
 # Loop across sessions for data preparation
-for subject in {1..40}; do
+for subject in {1..4}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
@@ -44,17 +44,21 @@ for subject in {1..40}; do
     		cd $run_dir
     		echo "Running Pnm Extraction"
     		echo "file: ${fname}.nii.gz, tr: ${trs}, physiofile = ${pnm_name}.txt"
+    		#define files
+    		#/usr/share/fsl/5.0/bin/
     		fslFixText \
     			 ${pnm_name}.txt \
     			 ${pnm_file}_input.txt
 
-		 #stage 1
+    			#stage 1
+    		 #/usr/share/fsl/5.0/bin/
     		 pnm_stage1 \
     				-i ${pnm_file}_input.txt \
     				-o ${pnm_file} \
     				-s 1000 --tr=$trs --smoothcard=0.1 --smoothresp=0.1 --resp=2 --cardiac=3 --trigger=4 --pulseox_trigger
 
     		 #popp
+    		 #/usr/share/fsl/5.0/bin/
     			popp \
     			 -i ${pnm_file}_input.txt \
     			 -o ${pnm_file} \
@@ -62,6 +66,7 @@ for subject in {1..40}; do
 
     				obase=${pnm_file}
 
+    				#/usr/share/fsl/5.0/bin/
     			pnm_evs \
     					-i $epi_file \
     					-c ${pnm_file}_card.txt \

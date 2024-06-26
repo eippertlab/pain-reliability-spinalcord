@@ -6,7 +6,7 @@ prepInput=1
 runpnm=1
 
 # Loop across sessions for data preparation
-for subject in {1..40}; do
+for subject in {1..41}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
@@ -53,13 +53,12 @@ for subject in {1..40}; do
     		cd $run_dir
     		echo "Running Pnm Extraction"
     		echo "file: ${fname}.nii.gz, tr: ${trs}, physiofile = ${pnm_name}.txt"
-    		
-      		#define files
+    		#define files
     		fslFixText \
     			 ${pnm_name}.txt \
     			 ${pnm_file}_input.txt
 
-		#stage 1 
+    			#stage 1
     		 pnm_stage1 \
     				-i ${pnm_file}_input.txt \
     				-o ${pnm_file} \

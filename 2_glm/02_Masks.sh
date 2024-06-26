@@ -4,7 +4,7 @@
 #our EPIs cover C5, C6, C7 and C8
 
 #what to do
-build_horn_masks=0
+build_horn_masks=1
 build_dilated_quadrant_masks=1
 build_cord_mask=1
 build_quadrant_masks=1
@@ -30,7 +30,7 @@ if [ $build_horn_masks = 1 ]; then
     fslmaths $mask_dir/${region}.nii.gz -bin $mask_dir/${region}.nii.gz
 
     # Define spinal cord levels and their corresponding slices
-    declare -A levels=(["c5"]="850 32" ["c6"]="819 30" ["c7"]="788 30" ["c8"]="756 31")
+    declare -A levels=(["c5"]="844 33" ["c6"]="812 31" ["c7"]="778 33" ["c8"]="739 38")
     for level in "${!levels[@]}"; do
       slices=${levels[$level]}
       fslroi $mask_dir/${region}.nii.gz $mask_dir/${region}_${level} 0 -1 0 -1 $slices
@@ -79,7 +79,7 @@ if [ $build_dilated_quadrant_masks = 1 ]; then
   done
 
   # Cut to spinal levels and multiply to make quadrant masks
-  declare -A levels=(["c5"]="850 32" ["c6"]="819 30" ["c7"]="778 33" ["c8"]="756 31")
+  declare -A levels=(["c5"]="844 33" ["c6"]="812 31" ["c7"]="778 33" ["c8"]="739 38")
   for level in "${!levels[@]}"; do
     echo "making ${level} masks"
     fslroi PAM50_cord_dilated.nii.gz cord_${level}_dil 0 -1 0 -1 ${levels[$level]}
@@ -96,7 +96,7 @@ if [ $build_cord_mask = 1 ]; then
   echo "cutting cord mask according to determined segmental coordinates"
 
   # Define spinal levels and their corresponding slices
-  declare -A levels=(["c5"]="850 32" ["c6"]="819 30" ["c7"]="778 33" ["c8"]="756 31")
+  declare -A levels=(["c5"]="844 33" ["c6"]="812 31" ["c7"]="778 33" ["c8"]="739 38")
 
   for level in "${!levels[@]}"; do
     # Extract each spinal level
@@ -143,7 +143,7 @@ if [ $build_quadrant_masks = 1 ]; then
   # Register ROIs to PAM50_cord and get segmental level for each mask
   for roi in dr vr dl vl; do
     sct_register_multimodal -i roi_${roi}.nii.gz -d PAM50_cord.nii.gz -identity 1 -o roi_${roi}.nii.gz
-    declare -A levels=(["c5"]="850 32" ["c6"]="819 30" ["c7"]="778 33" ["c8"]="756 31")
+    declare -A levels=(["c5"]="844 33" ["c6"]="812 31" ["c7"]="778 33" ["c8"]="739 38")
     for level in "${!levels[@]}"; do
       echo $level
       fslmaths cord_${level}.nii.gz -mul roi_${roi}.nii.gz ${level}_${roi}.nii.gz
