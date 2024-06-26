@@ -54,7 +54,7 @@ out_dir = f'{project_dir}derivatives/results/DHR/reliability/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6']
 data= []
-for subject in range(1, 5):
+for subject in range(1, 41):
     sub = 'sub-' + str(subject).zfill(2)
     print('subject: ',sub)
     #Loop over sessions
