@@ -8,7 +8,8 @@ matplotlib version: 3.6.3
 numpy version: 1.23.3
 nibabel version: 4.0.2
 """
-#%% Modules
+
+#%% Import Modules
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -17,6 +18,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib as mpl
 import nibabel as nib
 import glob 
+
 #%% Directories
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
@@ -32,6 +34,7 @@ data_thresh = data_thresh.drop(["z"], axis=1)
 statcount = data_thresh[data_thresh['pval']<0.001].groupby(["roi", "level"], as_index=False).count()  
 x = data_thresh["x"]
 y = data_thresh["y"]
+
 #%% get cord mask
 cord = glob.glob(f'{mask_dir}cord_c6.nii.gz')[0]
 imgcord = nib.load(cord)
@@ -49,6 +52,7 @@ for x in range(slice_cord.shape[0]):
             slice_cord_array = slice_cord_array.append({"x": float(x), "y": float(y)}, ignore_index=True)
 slice_cord_array["x"] = pd.to_numeric(slice_cord_array['x'], downcast='float')
 slice_cord_array["y"] = pd.to_numeric(slice_cord_array['y'], downcast='float')
+
 #%% get horn masks
 #dhl
 dhl_file = glob.glob(f'{mask_dir}dh_left_c6.nii.gz')[0]
@@ -115,6 +119,7 @@ for x in range(vhl.shape[0]):
             vhl_df = vhl_df.append({"x": float(x), "y": float(y)}, ignore_index=True)
 vhl_df["x"] = pd.to_numeric(vhl_df['x'], downcast='float')
 vhl_df["y"] = pd.to_numeric(vhl_df['y'], downcast='float')
+
 #%%  prep axes 
 whole = data_thresh
 c6 = data_thresh[data_thresh["level"]=="c6"]
@@ -124,6 +129,7 @@ x2 = whole["x"].values
 
 y1 = c6["y"].values
 y2 = whole["y"].values
+
 #%% Fig. 5. Spatial specificity of BOLD responses.
 mpl.rcParams['pdf.fonttype'] = 42
 sns.set(style="white")  
