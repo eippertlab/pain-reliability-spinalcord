@@ -24,7 +24,7 @@ data = []
 excluded_subjects = {3, 31}
 
 # Loop over subjects
-for subject in range(1, 5):
+for subject in range(1, 41):
     if subject in excluded_subjects:
         continue
     sub = f'sub-{str(subject).zfill(2)}'
