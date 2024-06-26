@@ -10,8 +10,8 @@
 #uncorrected p values within each horn per segment
 
 #what shall be done
-extract_single_level=0
-extract_group_level=0
+extract_single_level=1
+extract_group_level=1
 extract_group_level_dhlc6=1
 
 #Directories
