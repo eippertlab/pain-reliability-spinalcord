@@ -16,7 +16,7 @@ project_dir=/data/pt_02306/main/data/pain-reliability-spinalcord
 mask_dir=$project_dir/derivatives/masks
 
 if [ $extract_single_level -eq 1 ]; then
-	for subject in {1..2}; do
+	for subject in {1..40}; do
 	  for session in {1..2}; do
 			echo $model
 	    printf -v sub "%02d" $subject
