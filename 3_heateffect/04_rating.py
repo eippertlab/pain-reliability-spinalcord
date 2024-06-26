@@ -8,22 +8,26 @@ ptitprince version: 0.2.6
 seaborn version: 0.11.0
 matplotlib version: 3.6.3
 """
+
 #%% Import Modules
 import pandas as pd
 import numpy as np
 import ptitprince as pt
 import seaborn as sns
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import glob
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
+
 #%% Import data
 data = [] 
 excluded_subjects = {3, 31}
 
 # Loop over subjects
-for subject in range(1, 5):
+for subject in range(1, 41):
     if subject in excluded_subjects:
         continue
     sub = f'sub-{str(subject).zfill(2)}'
@@ -67,25 +71,28 @@ for sub in ids:
 
 # Convert the list of dictionaries to a DataFrame
 ratings_avg_df = pd.DataFrame(ratings_avg)
+
 #%%
 ratings_avg_df["Session_num_shift"] = ratings_avg_df["ses"].replace('ses-02',2.15)
 ratings_avg_df["Session_num_shift"] = ratings_avg_df["Session_num_shift"].replace('ses-01', 1.15)
 ratings_avg_df["Session_num_shift"] = ratings_avg_df["Session_num_shift"].replace('Average', 0.15)
+
 #%%
 ratings_avg_df["Session_num"] = ratings_avg_df["ses"].replace('ses-02', str(2))
 ratings_avg_df["Session_num"] = ratings_avg_df["Session_num"].replace('ses-01', str(1))
 ratings_avg_df["Session_num"] = ratings_avg_df["Session_num"].replace('Average', str(0))
 ratings_avg_df["Session_num"] = ratings_avg_df['Session_num'].astype(float)
+
 #%%
-import numpy as np
 np.random.seed(10)
 jitter = 0.1
 ratings_avg_df = ratings_avg_df.assign(x_new = lambda df: df.Session_num_shift + (np.random.random(df.Session_num_shift.size))*jitter-0.02,
                          y_new = lambda df: df.value + (np.random.random(df.value.size))-0.5)
+
 #%% Figure 2. Subjective and peripheral physiological responses; Rating
 my_pal2 = {0:"darkgreen", 1: "#d95f02", 2: "#7570b3"}
 my_pal = {"Average":"darkgreen", "ses-01": "#d95f02", "ses-02": "#7570b3"}
-import matplotlib as mpl
+
 mpl.rcParams['pdf.fonttype'] = 42
 sns.set(style="white",font_scale=1.8)
 sns.set_style('ticks')  
