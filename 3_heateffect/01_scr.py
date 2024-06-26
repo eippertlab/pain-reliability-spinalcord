@@ -14,6 +14,7 @@ import seaborn as sns
 import numpy as np
 from math import sqrt
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import matplotlib.patches as patches
 import glob
 from pathlib import Path
@@ -23,6 +24,7 @@ import pingouin as pg
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
+
 #%% Import data
 data = [] 
 x = np.linspace(-1, 10, num=1100)  
@@ -73,6 +75,7 @@ data_overall['sem'] = data_overall['sd']/sqrt(sub_n)
 data_session = data_session_sub.groupby(["epoch", "ses"], as_index=False).mean().reset_index()
 data_session['sd'] = data_session_sub.groupby(["epoch", "ses"], as_index=False).std().val_scaled
 data_session['sem'] = data_session['sd']/sqrt(sub_n)
+
 #%% Reliability and ttest between peaks,
 #for scr look for peak between 0 and 8s relative to heat onset
 #for pupil look for peak between 0 and 4 seconds relative to heat onset
@@ -85,10 +88,9 @@ data_sample_max_avg.to_csv(f'{out_dir}peak_scr_ReliabilityRun.csv')
 #Difference
 data_ttest = data_sample_max_avg.pivot_table(values="val_scaled", columns="ses", index="sub")
 ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
+
 #%% Figure 2. Subjective and peripheral physiological responses, SCR
 x = pd.Series(np.linspace(-1, 10, num=1100))
-
-
 color_avg = "darkgreen"
 color_ses1 = "#d95f02"
 color_ses2 = "#7570b3"
@@ -100,7 +102,6 @@ ylim_dist = ylim_hi -ylim_lo
 rect = patches.Rectangle((0,ylim_lo), 1, ylim_dist, linewidth=1, edgecolor='#9c96a4', facecolor="#9c96a4", alpha=0.2, label="Heat")
 rect2 = patches.Rectangle((0,ylim_lo), 1, ylim_dist, linewidth=1, edgecolor='#9c96a4', facecolor='#9c96a4', alpha=0.2, label='_nolegend_')
 
-import matplotlib as mpl
 mpl.rcParams['pdf.fonttype'] = 42
 sns.set(style="white",font_scale=1.8)  
 with sns.plotting_context('paper', font_scale = 2): 
