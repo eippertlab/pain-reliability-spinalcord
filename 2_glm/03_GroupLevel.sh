@@ -2,17 +2,18 @@
 # 02_2ndLevel.sh
 
 #what shall be done
-prep_sessionwise=0
-run_dhl_sessionwise=0
-run_cord_sessionwise=0
-run_cord_dil_sessionwise=0
+prep_sessionwise=1
+run_dhl_sessionwise=1
+run_cord_sessionwise=1
+run_cord_dil_sessionwise=1
 
-prep_avg=0
-run_dhl_avg=0
-run_cord_avg=0
-run_cord_dil_avg=0
+prep_avg=1
+run_dhl_avg=1
+run_cord_avg=1
+run_cord_dil_avg=1
 
 get_copezstat=1
+
 #Directories
 template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template
 project_dir=/data/pt_02306/main/data/pain-reliability-spinalcord
@@ -27,7 +28,7 @@ if [ $prep_sessionwise = 1 ]; then
 
 		# Loop across sessions for data preparation
 		full_cope=()
-		for subject in {1..8}; do #{1..40}; do
+		for subject in {1..40}; do
 			printf -v sub "%02d" $subject
       #subject directory
 			data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/ReliabilityRun.feat/stats/normalization
@@ -99,7 +100,7 @@ if [ $prep_avg = 1 ]; then
 		full_cope=()
 		cope_count=0
 		# Loop across subjects and sessions sessions for data preparation
-		for subject in {1..4}; do
+		for subject in {1..40}; do
 			echo "subject: $sub"
 			printf -v sub "%02d" $subject
 			sub_cope=()
