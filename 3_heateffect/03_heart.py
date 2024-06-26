@@ -9,7 +9,8 @@ matplotlib version: 3.6.3
 seaborn version: 0.11.0
 pingouin version: 0.5.3
 """
-#%% Modules
+
+#%% Import Modules
 import os
 import glob
 import numpy as np
@@ -23,16 +24,18 @@ import seaborn as sns
 from math import sqrt
 from pathlib import Path
 import pingouin as pg
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/ReliabilityRun/physio/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
+
 #%% Epoch and finalize data
 hpr = []
 #Loop over sessions
 for session in range (1,3):
     ses = 'ses-' + str(session).zfill(2)
-    for subject in range(1, 5): # 41): 
+    for subject in range(1, 41): 
         sub = 'sub-' + str(subject).zfill(2)
         print('subject: ',sub)
         print('session: ',ses)
@@ -76,7 +79,7 @@ for session in range (1,3):
         heart_period = signal.filtfilt(b, a, heart_period)
         
         
-      #  # epoching and baseline correction
+        # epoching and baseline correction
         for e, event in enumerate(new_events):
             baseline_value = np.mean(heart_period[int((event + baseline[0]) * new_sr):
                                                   int((event + baseline[1]) * new_sr)], axis=0)
@@ -99,6 +102,7 @@ data = pd.read_pickle(f'{out_dir}hpr_ReliabilityRun.pickle')
 ids = data["sub"].unique()
 sub_n = len(ids)
 epochs = data.x.unique()
+
 #%% Prep the data
 overall_max = data.value.max()
 data['val_scaled'] = data.value/overall_max;
@@ -124,6 +128,7 @@ data_sample_max_avg.to_csv(f'{out_dir}peak_hpr_ReliabilityRun.csv')
 #Difference
 data_ttest = data_sample_max_avg.pivot_table(values="val_scaled", columns="ses", index="sub")
 ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
+
 #%% Figure 2. Subjective and peripheral physiological responses, HPR
 x = pd.Series(np.linspace(-1, 10, num=1100))
     
