@@ -80,7 +80,7 @@ pd.to_pickle(dc_data, f'{out_dir}dc.pickle')
 
 #%% Import moco data
 data = []
-for subject in range(1, 3): 
+for subject in range(1, 41): 
     sub = 'sub-' + str(subject).zfill(2)
     print('subject: ',sub)
     #Loop over sessions
