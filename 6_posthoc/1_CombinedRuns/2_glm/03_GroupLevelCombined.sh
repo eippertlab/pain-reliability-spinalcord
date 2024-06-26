@@ -112,7 +112,7 @@ fi
 if [ $prep_avg = 1 ]; then
 		full_cope=()
 		# Loop across subjects and sessions sessions for data preparation
-		for subject in {1..4}; do
+		for subject in {1..40}; do
 			echo "subject: $sub"
 			printf -v sub "%02d" $subject
 			sub_cope=()
