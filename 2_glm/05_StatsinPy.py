@@ -9,10 +9,12 @@ import pandas as pd
 import warnings
 from pathlib import Path
 warnings.filterwarnings("ignore")
+
 #%% Functions
 def retain_quantile(data, percentile=0.9):
     percentile_val = data[3].quantile(percentile)
     return data[data[3] >= percentile_val]
+    
 #%% For reliability 
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord"
 out_dir = f'{project_dir}derivatives/results/reliability/'
@@ -43,6 +45,7 @@ for subject in range(1, 41):
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}cope_ReliabilityRun.pickle')
+
 #%% All individual values
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/reliability/'
@@ -69,6 +72,7 @@ for subject in range(1, 41):
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}all_stats_ReliabilityRun.pickle')
+
 #%% For spatial specificity, average over both sessions
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/glm/ReliabilityRun/cord/'
