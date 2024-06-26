@@ -50,10 +50,10 @@ if [ $extract_group_level = 1 ]; then
 	rois=(dh_left dh_right vh_left vh_right)
 	levs=(c5 c6 c7 c8)
   groupdir=$project_dir/derivatives/results/glm/ReliabilityRun/cord
-	#sct_register_multimodal -i $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz \
-	#												-d $mask_dir/PAM50_cord.nii.gz \
-	#												-identity 1 \
-	#												-o $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz
+	sct_register_multimodal -i $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz \
+													-d $mask_dir/PAM50_cord.nii.gz \
+													-identity 1 \
+													-o $groupdir/cord_avg_OneSampT_masked_vox_p_tstat1.nii.gz
 	#extract GM horns
   for i in {0..3}; do
     for n in {0..3}; do
