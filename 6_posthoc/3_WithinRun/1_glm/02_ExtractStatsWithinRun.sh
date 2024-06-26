@@ -16,7 +16,7 @@ project_dir=/data/pt_02306/main/data/pain-reliability-spinalcord
 mask_dir=$project_dir/derivatives/masks
 
 if [ $extract_single_level -eq 1 ]; then
-	for subject in {1..40}; do
+	for subject in {1..2}; do
 	  for session in {1..2}; do
 			echo $model
 	    printf -v sub "%02d" $subject
@@ -25,11 +25,11 @@ if [ $extract_single_level -eq 1 ]; then
 	    #Directories
 	    run_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/WithinRun
 			cd $run_dir
-			for within_type in early late odd even; do
+			for within_type in odd_even early_late; do
 				data_dir=$run_dir/${within_type}.feat/stats/normalization
 	  		out_dir=$data_dir/extracts
 				mkdir -p $out_dir
-				for stat in cope1 zstat1; do
+				for stat in cope1 cope2 zstat1 zstat2; do
 					sct_register_multimodal -i $data_dir/${stat}_reg.nii.gz \
 																	-d $mask_dir/PAM50_cord.nii.gz \
 																	-identity 1 \

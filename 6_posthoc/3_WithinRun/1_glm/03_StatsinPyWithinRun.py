@@ -27,11 +27,21 @@ for subject in range(1, 41):
     #Loop over sessions
     for session in range (1,3):
         ses = 'ses-' + str(session).zfill(2)
-        for within_type in ["early", "late", "odd", "even"]:
+        for within_type in ['early_late', 'odd_even']:
             #Define subject directories and ROIs
             data_dir = f'{project_dir}/derivatives/{sub}/{ses}/func/glm/WithinRun/{within_type}.feat/stats/normalization/extracts/'
             for roi in rois:
-                for stat in ['cope1', 'zstat1']:
+                for stat in ['cope1', 'cope2', 'zstat1', 'zstat2']:
+                    if within_type=='early_late':
+                        if stat in ['cope1', 'zstat1']:
+                            within_subtype = 'early'
+                        if stat in ['cope2', 'zstat2']:
+                            within_subtype = 'early'
+                    if within_type=='odd_even':
+                        if stat in ['cope1', 'zstat1']:
+                            within_subtype = 'odd'
+                        if stat in ['cope2', 'zstat2']:
+                            within_subtype = 'even'
                     tmp=pd.read_csv(f'{data_dir}{stat}_{roi}_m.txt' , header=None, names=["avg"], delim_whitespace=True)
                     tmp1=pd.read_csv(f'{data_dir}{stat}_{roi}_min_max.txt' , header=None, delim_whitespace=True)
                     tmp['max'] = tmp1.iloc[0,1]
@@ -42,7 +52,8 @@ for subject in range(1, 41):
                     tmp['ses'] = ses
                     tmp['roi'] = roi
                     tmp['stat'] = stat
-                    tmp["subset"] = within_type
+                    tmp["subset_type"] = within_type
+                    tmp["subset"] = within_subtype
                     data.append(tmp)
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
@@ -54,24 +65,34 @@ out_dir = f'{project_dir}derivatives/results/WithinRun/reliability/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 rois=['dh_left_c6']
 data= []
-for subject in range(1, 5):
+for subject in range(1, 41):
     sub = 'sub-' + str(subject).zfill(2)
     print('subject: ',sub)
     #Loop over sessions
     for session in range (1,3):
         ses = 'ses-' + str(session).zfill(2)
-        for within_type in ["early", "late", "odd", "even"]:
+        for within_type in ["early_late", "odd_even"]:
             #Define subject directories and ROIs
             data_dir = f'{project_dir}/derivatives/{sub}/{ses}/func/glm/WithinRun/{within_type}.feat/stats/normalization/extracts/'
             for roi in rois:
-                for stat in ['cope1', 'zstat1']:
+                for stat in ['cope1', 'cope2', 'zstat1', 'zstat2']:
+                    if within_type=='early_late':
+                        if stat in ['cope1', 'zstat1']:
+                            within_subtype = 'early'
+                        if stat in ['cope2', 'zstat2']:
+                            within_subtype = 'early'
+                    if within_type=='odd_even':
+                        if stat in ['cope1', 'zstat1']:
+                            within_subtype = 'odd'
+                        if stat in ['cope2', 'zstat2']:
+                            within_subtype = 'even'
                     tmp=pd.read_csv(f'{data_dir}{stat}_{roi}_all.txt', header=None, delim_whitespace=True).transpose()
                     tmp = tmp.rename(columns={0:"x", 1:"y", 2:"z", 3:"val"})
                     tmp['sub'] = sub
                     tmp['ses'] = ses
                     tmp['roi'] = roi
                     tmp['stat'] = stat
-                    tmp["subset"] = within_type
+                    tmp["subset"] = within_subtype
                     data.append(tmp)
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
