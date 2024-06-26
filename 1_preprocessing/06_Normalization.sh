@@ -2,11 +2,11 @@
 # 06_Normalization.sh
 
 # What shall be done?
-normalize_t2=0
+normalize_t2=1
 normalize_epi=1
 
 # Loop across sessions for data preparation
-for subject in {1..4}; do
+for subject in {1..40}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
     printf -v ses "%02d" $session
