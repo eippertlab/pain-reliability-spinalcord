@@ -9,10 +9,6 @@ numpy version: 1.23.3
 import pandas as pd
 import numpy as np
 
-#%% Directories
-project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
-data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
-
 #%% Functions
 def dice_coeff(df, thresh=None):
     if thresh != None:
@@ -34,7 +30,11 @@ def dice_coeff(df, thresh=None):
     v2 = len(ses2)
     dc = (2*voverlap) / (v1 + v2) if (v1 + v2)!=0 else None
     return dc
-    
+
+#%% Directories
+project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
+data_dir = f'{project_dir}derivatives/results/spatial_specificity/'
+
 #%% Second level Dice index left DH C6
 data = pd.read_pickle(f'{data_dir}dhlc6_p_uncorr.pickle')
 data['pval'] = 1 - data['val']
