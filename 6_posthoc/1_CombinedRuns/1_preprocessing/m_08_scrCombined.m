@@ -9,6 +9,7 @@ addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_func
 addpath(genpath('/data/pt_02098/Toolbox/eeglab2019_0/'))
 eeglab
 close
+
 %%
 for isub=1:40
     sub=['sub-',num2str(isub,'%02.f')];
@@ -21,6 +22,7 @@ for isub=1:40
         cfg.out     = 'scr';
         cfg.ses = ses;
         epoch_scr = 1;          % epoch data into trials and create one datafile for all
+        
         %% get filenames
         dir_list = dir(fullfile(cfg.data, '*scr.tsv'));
         all_files = {dir_list.name};
