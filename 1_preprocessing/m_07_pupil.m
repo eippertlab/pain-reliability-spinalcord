@@ -1,12 +1,11 @@
 % wrapper for epoching pupil data
-% for predcod behav first replication dataset
 % uses PSPM toolbox
 % https://github.com/bachlab/PsPM
 % version used here: PsPM_v6.0.0
 % Ulrike Horn
 % uhorn@cbs.mpg.de
 % adapted by Alice Dabbagh (dabbagh@cbs.mpg.de)
-% 27th November 2020
+
 close all
 clear
 addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/1_preprocessing/'
@@ -25,6 +24,7 @@ for subject=1:40
         cfg.sub=sub;
         cfg.pspm_path = '/data/u_dabbagh_software/PsPM_v6.1/';
         epoch_pupil = 1;            % epoch data into trials and create one datafile for all
+        
         %% prepare the files %%
         cd(cfg.data)
 
