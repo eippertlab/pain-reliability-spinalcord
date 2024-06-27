@@ -8,6 +8,7 @@ ptitprince version: 0.2.6
 seaborn version: 0.11.0
 matplotlib version: 3.6.3
 """
+
 #%% Import Modules
 import pandas as pd
 import numpy as np
@@ -15,6 +16,7 @@ import ptitprince as pt
 import seaborn as sns
 import matplotlib.pyplot as plt
 import glob
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/CombinedRuns/physio/'
