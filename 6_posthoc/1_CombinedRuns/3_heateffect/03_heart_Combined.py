@@ -9,7 +9,8 @@ matplotlib version: 3.6.3
 seaborn version: 0.11.0
 pingouin version: 0.5.3
 """
-#%% Modules
+
+#%% Import Modules
 import os
 import glob
 import numpy as np
@@ -79,7 +80,7 @@ for session in range (1,3):
             heart_period = signal.filtfilt(b, a, heart_period)
 
 
-          #  # epoching and baseline correction
+            # epoching and baseline correction
             for e, event in enumerate(new_events):
                 baseline_value = np.mean(heart_period[int((event + baseline[0]) * new_sr):
                                                       int((event + baseline[1]) * new_sr)], axis=0)
@@ -98,6 +99,7 @@ for session in range (1,3):
                 hpr.append(hp_epo)
 data = pd.concat(hpr, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}hpr_CombinedRuns.pickle')
+
 #%% Load variables
 data = pd.read_pickle(f'{out_dir}hpr_CombinedRuns.pickle')
 ids = data["sub"].unique()
