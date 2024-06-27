@@ -9,6 +9,7 @@ pingouin version: 0.5.3
 ptitprince version: 0.2.6
 scipy version: 1.11.4
 """
+
 #%% Import Modules
 import pandas as pd
 import glob 
@@ -21,6 +22,7 @@ import warnings
 import numpy as np
 import os
 import numpy as np
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord"
 out_dir = f'{project_dir}/derivatives/results/Posthoc/Correlations/'
@@ -44,7 +46,8 @@ for subject in range(1, 41):
         data.append(tmp)
         
 data = pd.concat(data, ignore_index=True)
-pd.to_pickle(data, f'{out_dir}reg_segs.pickle')                
+pd.to_pickle(data, f'{out_dir}reg_segs.pickle')    
+
 #%% Import PAM50 cord segmentations
 mask_dir =  f'{project_dir}/derivatives/masks/'
 file = "PAM50_cord_cut_t.txt"
