@@ -2,13 +2,14 @@
 # 01_FeatWithinRun.sh
 
 #what shall be done
-create_fsf=0
-run_feat=0
+create_fsf=1
+run_feat=1
 normalize_feat=1
 
-#Directories
-original_fsf=/data/pt_02306/main/code/github/pain-reliability-spinalcord/helper_functions/design.fsf
-
+#normalization Directories
+template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template #replace with your own sct folder
+    
+# Loop over subjects and sessions
 for subject in {1..40}; do
   for session in {1..2}; do
     printf -v sub "%02d" $subject
@@ -21,9 +22,7 @@ for subject in {1..40}; do
     data_dir=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/preprocessing
     out_dir_fsf=$project_dir/derivatives/sub-${sub}/ses-${ses}/func/glm/WithinRun
     mkdir -p $out_dir_fsf
-    #normalization Directories
-    template_dir=/data/u_dabbagh_software/sct_5.5/data/PAM50/template #replace with your own sct folder
-
+    
     cd  $data_dir
     for file in $(find $data_dir/ -maxdepth 1 -name  "*te40ReliabilityRun*bold_denoised_moco_refined.nii.gz"); do
       fname=$(basename "$file" | cut -d. -f1)
