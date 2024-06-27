@@ -8,6 +8,7 @@ numpy version: 1.23.3
 matplotlib version: 3.6.3
 pingouin version: 0.5.3
 """
+
 #%% Import Modules
 import pandas as pd
 import seaborn as sns
@@ -32,7 +33,7 @@ x = np.linspace(-1, 10, num=1100)
 excluded_subjects = {16, 39}
 
 # Loop over subjects
-for subject in range(1, 40):
+for subject in range(1, 41):
     if subject in excluded_subjects:
         continue
     sub = f'sub-{str(subject).zfill(2)}'
@@ -57,11 +58,13 @@ for subject in range(1, 40):
 data = pd.concat(data, ignore_index=True)
 # store as variables to avoid loading every time
 pd.to_pickle(data, f'{out_dir}scr_ReliabilityRun.pickle')
+
 #%% Load variables    
 data = pd.read_pickle(f'{out_dir}scr_ReliabilityRun.pickle')
 ids = data["sub"].unique()
 sub_n = len(ids)
 epochs = data.epoch.unique()
+
 #%% Prep the data
 overall_max = data.value.max()
 data['val_scaled'] = data.value/overall_max;
