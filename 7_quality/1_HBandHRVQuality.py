@@ -10,6 +10,7 @@ pingouin version: 0.5.3
 ptitprince version: 0.2.6
 scipy version: 1.11.4
 """
+
 #%% Import Modules
 import pandas as pd
 import numpy as np
@@ -148,6 +149,7 @@ with sns.plotting_context('paper', font_scale=2):
     lines, labels = [sum(lol, []) for lol in zip(*lines_labels)]
     plt.savefig(f'{out_dir}HRV_ReliabilityRun_rmssd.png', bbox_inches='tight', format="png", dpi=300)
     plt.show()
+    
 #%% Fig. 6. Physiological state and data quality across days, HR
 my_pal = {"ses-01": "#d95f02", "ses-02": "#7570b3"}
 mpl.rcParams['pdf.fonttype'] = 42
