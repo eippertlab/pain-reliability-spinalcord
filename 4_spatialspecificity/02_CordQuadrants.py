@@ -7,7 +7,7 @@ seaborn version: 0.11.0
 matplotlib version: 3.6.3
 """
 
-#%% Improt Modules
+#%% Import Modules
 import pandas as pd
 import seaborn as sns
 import matplotlib as mpl
