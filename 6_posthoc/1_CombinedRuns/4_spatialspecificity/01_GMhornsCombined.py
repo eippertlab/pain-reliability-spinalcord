@@ -8,7 +8,8 @@ matplotlib version: 3.6.3
 numpy version: 1.23.3
 nibabel version: 4.0.2
 """
-#%% Modules
+
+#%% Import Modules
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
