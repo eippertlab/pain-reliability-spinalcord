@@ -4,12 +4,14 @@
 pandas version: 1.5.0
 numpy version: 1.23.3
 """
+
 #%% Import Modules
 import pandas as pd
 import numpy as np
 import glob
 import json
 from pathlib import Path
+
 #%% Functions
 def calculate_deviation_angle(row):
     # Extract row and column direction cosines
@@ -62,7 +64,8 @@ for subject in range(1, 41):
                             'te': [te],
                             'orientation': [orientation_np]})
         data_all.append(tmp)      
-angle_to_b0 = pd.concat(data_all, ignore_index=True)        
+angle_to_b0 = pd.concat(data_all, ignore_index=True) 
+
 #%% Save 
 angle_to_b0["angle"] = angle_to_b0.apply(calculate_deviation_angle, axis=1)
 savename = f'{out_dir}dicom_zplane.csv'
