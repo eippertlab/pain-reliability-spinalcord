@@ -1,6 +1,7 @@
 % uses PSPM toolbox
 % https://github.com/bachlab/PsPM
 % version used here: PsPM6.1
+
 %% Prep code
 addpath('/data/u_dabbagh_software/PsPM6.1', '-end');
 write_data=1
@@ -9,6 +10,7 @@ run_glm=1
 run_sf=1
 excluded_subjects = [16, 39]; % Define excluded subjects
 my_sr = 100;
+
 %% Loop over subject and sessions
 for isub=1:40
     if any(isub == excluded_subjects)
@@ -69,6 +71,7 @@ for isub=1:40
                 timing_info.onsets = {event_onsets_seconds}; % Cell array of onset times
                 timing_info.durations = {ones(size(event_onsets_seconds))}; % Durations are zeros for event-related designs
             end
+            
             %%
             if run_glm
                 % Now, this timing_info can be used in the model structure for pspm_glm
