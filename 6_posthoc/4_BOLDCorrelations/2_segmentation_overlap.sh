@@ -28,7 +28,7 @@ process_subject() {
 }
 
 # Loop across subjects for data preparation in parallel
-for subject in {1..40}; do #1; do #{1..5}; do
+for subject in {1..40}; do 
   printf -v sub "%02d" $subject
   echo "Starting parallel processing for subject: sub-"$sub
   #process_subject $sub &  # Start in the background
