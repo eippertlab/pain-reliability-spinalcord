@@ -6,7 +6,8 @@ pandas version: 1.5.0
 seaborn version: 0.11.0
 matplotlib version: 3.6.3
 """
-#%% Modules
+
+#%% Import Modules
 import pandas as pd
 import seaborn as sns
 import matplotlib.pylab as plt
