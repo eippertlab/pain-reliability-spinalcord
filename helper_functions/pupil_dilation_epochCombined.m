@@ -1,4 +1,4 @@
-% segments data from each block into trials from 1s before heat onset to 6s
+% segments data from each block into trials from 1s before heat onset to 10s
 % after cue onset (1s after rating), concatenates data from all blocks
 % and saves it in pd_epo_all.mat
 % events are stored in a combined file related to the epoch
