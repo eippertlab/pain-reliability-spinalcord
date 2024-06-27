@@ -4,7 +4,8 @@
 Python version: 3.10.9
 pandas version: 1.5.0
 """
-#%% Modules
+
+#%% Import Modules
 import pandas as pd
 import warnings
 from pathlib import Path
@@ -94,6 +95,7 @@ for roi_choice in roi_choice:
 # Concatenate all dataframes at once
 data = pd.concat(data, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}cord_p_uncorr.pickle')
+
 #%% For spatial specificity, single sessions for dice index
 project_dir = '/data/pt_02306/main/data/pain-reliability-spinalcord/'
 data_dir = f'{project_dir}derivatives/results/glm/ReliabilityRun/dh_left_c6/'
