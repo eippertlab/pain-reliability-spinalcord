@@ -6,7 +6,7 @@
 % Ulrike Horn
 % uhorn@cbs.mpg.de
 % adapted by Alice Dabbagh (dabbagh@cbs.mpg.de)
-% 27th November 2020
+
 close all
 clear
 addpath '/data/pt_02306/main/code/github/pain-reliability-spinalcord/1_preprocessing/'
