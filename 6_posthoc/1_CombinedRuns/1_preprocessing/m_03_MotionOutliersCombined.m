@@ -1,11 +1,13 @@
 clc
 clear all
+
 %%  enable FSL
 setenv('FSLDIR', '/afs/cbs.mpg.de/software/fsl/5.0.11/ubuntu-xenial-amd64/'); %insert your FSL dir here
 fsldir = getenv('FSLDIR');
 fsldirmpath = sprintf('%s/etc/matlab',fsldir);
 path(path, fsldirmpath);
 setenv('FSLOUTPUTTYPE', 'NIFTI_GZ'); % this to tell what the output type would be
+
 %% Identification %%
 for subject=1:40
     for session=1:2
@@ -45,6 +47,7 @@ for subject=1:40
 
             %get task runs and baseline
             runs = sort(all_files);
+            
             %%  LOOP OVER BLOCKS
             for g = 1:length(runs)
                 % set everything up
