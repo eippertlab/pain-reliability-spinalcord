@@ -9,6 +9,7 @@ pingouin version: 0.5.3
 ptitprince version: 0.2.6
 scipy version: 1.11.4
 """
+
 #%% Import Modules
 import pandas as pd
 import glob 
@@ -24,7 +25,7 @@ project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/ReliabilityRun/quality/'
 Path(out_dir).mkdir(parents=True, exist_ok=True)
 
-#%% 
+#%% Import data
 data= []
 for subject in range(1, 41):
     sub = 'sub-' + str(subject).zfill(2)
