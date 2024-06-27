@@ -97,6 +97,7 @@ for session in range (1,3):
             hpr.append(hp_epo)
 data = pd.concat(hpr, ignore_index=True)
 pd.to_pickle(data, f'{out_dir}hpr_ReliabilityRun.pickle')
+
 #%% Load variables    
 data = pd.read_pickle(f'{out_dir}hpr_ReliabilityRun.pickle')
 ids = data["sub"].unique()
@@ -116,6 +117,7 @@ data_overall['sem'] = data_overall['sd']/sqrt(sub_n)
 data_session = data_session_sub.groupby(["epoch", "ses"], as_index=False).mean().reset_index()
 data_session['sd'] = data_session_sub.groupby(["epoch", "ses"], as_index=False).std().val_scaled
 data_session['sem'] = data_session['sd']/sqrt(sub_n)
+
 #%% Reliability and ttest between peaks,
 #for scr look for peak between 0 and 8s relative to heat onset
 #for pupil look for peak between 0 and 4 seconds relative to heat onset
