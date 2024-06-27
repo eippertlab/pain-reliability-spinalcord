@@ -1,5 +1,5 @@
 % segments data from each block into trials from 1s before onset
-% to 7s after onset
+% to 10s after onset
 % and saves it in scr_epo_all.mat
 % additionally creates single trial plots so that one can check data
 % quality
