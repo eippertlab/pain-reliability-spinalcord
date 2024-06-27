@@ -8,6 +8,8 @@ numpy version: 1.23.3
 matplotlib version: 3.6.3
 pingouin version: 0.5.3
 """
+
+#%% Import Modules
 import pandas as pd
 import seaborn as sns
 import numpy as np
@@ -17,6 +19,7 @@ import matplotlib.patches as patches
 import glob
 from pathlib import Path
 import pingouin as pg
+
 #%% Directories
 project_dir = "/data/pt_02306/main/data/pain-reliability-spinalcord/"
 out_dir = f'{project_dir}derivatives/results/CombinedRuns/physio/'
@@ -89,7 +92,6 @@ ttest = pg.ttest(data_ttest["ses-01"], data_ttest["ses-02"], paired=True)
 
 #%% Subjective and peripheral physiological responses, SCR, CombinedRuns
 x = pd.Series(np.linspace(-1, 10, num=1100))
-
 
 color_avg = "darkgreen"
 color_ses1 = "#d95f02"
